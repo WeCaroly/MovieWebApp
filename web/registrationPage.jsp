@@ -4,11 +4,11 @@
 </head>
 <body style="background-color: #2E2E2E; position: fixed; top: 40%; left: 50%; transform: translate(-50%, -50%);">
 
-<div class="box" style="background-color: white; border-radius: 50px;">
+<div class="box" style="background-color: aliceblue; border-radius: 10px;">
 <h1 style="text-align: center; font-size: 64px; font-family: Helvetica;">Registration Details</h1>
 
 <form action="WatchlistPage.jsp?reqType=register" method="POST" style="font-size: 24px; font-family: Helvetica;">
-    <div class="information" style="text-align: center;">
+    <div class="information" style="text-align: center; font-family: Helvetica;">
         First name:&nbsp;<input type="text" name="fname" style="width: 300px; height: 40px; border: solid black;" />
         <br/><br/>
         Last name:&nbsp;<input type="text" name="lname"style="width: 302px; height: 40px; border: solid black;" />
@@ -26,7 +26,7 @@
 
         <br/>
         <p><input type="image" value="Submit" src="http://www.pngmart.com/files/3/Submit-Button-Transparent-PNG.png"
-        	style="width: 200px; padding-bottom: 50px;"/></p>
+        	style="cursor: pointer; width: 200px; padding-bottom: 50px;"/></p>
     </div>
 </form>
 </div>
@@ -35,7 +35,7 @@
 body{
 	background-color: #ECE8E8;
     width: 700px;
-    border: 15px solid #F51616;
+    border: 10px solid #F51616;
     border-radius: 15px;
 }
 </style>
