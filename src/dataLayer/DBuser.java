@@ -113,7 +113,7 @@ public class DBuser {
                 int age = rs.getInt("age");
                 char gender = rs.getString("gender").charAt(0);
                 boolean reciveEmail = rs.getBoolean("reciveEmail");
-                String pass = rs.getString("pass");
+                String pass = rs.getString("password");
 
                 newUser.setAge(age);
                 newUser.setFname(fname);
@@ -173,9 +173,9 @@ public class DBuser {
 
            sql = "INSERT INTO user " +
                    "(`fname`, `lname`, `uname`, `age`, `ename`, `gender`, `reciveEmail`, `password`) " +
-                   "VALUES ('"+newUser.getFname()+"', '"+newUser.getFname()+"', '" +
-                   newUser.getUname()+"', '"+newUser.getAge()+"', '"+newUser.getEname()+"', '"+
-                   newUser.getGender()+"', '"+newUser.isReciveEmail()+"', '"+newUser.getPAss()+"')";
+                   "VALUES (\'"+newUser.getFname()+"\', \'"+newUser.getFname()+"\', \'" +
+                   newUser.getUname()+"\', \'"+newUser.getAge()+"\', \'"+newUser.getEname()+"\', \'"+
+                   newUser.getGender()+"\', \'"+newUser.isReciveEmail()+"\', \'"+newUser.getPAss()+"\')";
            ResultSet rs = stmt.executeQuery(sql);
 
 
@@ -285,7 +285,7 @@ public class DBuser {
             ArrayList<movieModel> allMovies = getMovies();
 
 
-            sql = "SELECT * FROM movielist where isuser ="+iduser;
+            sql = "SELECT * FROM movielist where isuser ="+iduser+";";
             System.out.println(sql);
 
             ResultSet rs = stmt.executeQuery(sql);
@@ -298,7 +298,9 @@ public class DBuser {
                 while (allMovies.size() > i){
                     if (addedMovie.getIdmovie() == allMovies.get(i).getIdmovie()) {
                         myMovies.add(allMovies.get(i));
+                        break;
                     }
+                    i++;
                 }
             }
 
@@ -322,7 +324,11 @@ public class DBuser {
         return myMovies;
     }
 
-
+    /**
+     * get the friends by the users id
+     * @param iduser the user's is
+     * @return userModel of all the friends
+     **/
     public ArrayList<userModel> getFriends(int iduser) {
         Connection con = null;
         Statement stmt = null;
@@ -357,15 +363,12 @@ public class DBuser {
                 int i = 0;
                 while (allUsers.size() > i) {
                     if (allUsers.get(i).getId() == newfriend.getIduser()){
-
+                        friendInfo.add(allUsers.get(i));
+                        break;
                     }
                     i++;
                 }
-                friendList.add(newfriend);
             }
-
-
-
             rs.close();
             stmt.close();
             con.close();
@@ -383,19 +386,20 @@ public class DBuser {
             }
         }
         System.out.print("closed the DB!");
-        return friendList;
+        return friendInfo;
     }
     /**
      * Recomend List Call for the user
-     * @param isuser is the is for the user who is logged in
+     * @param iduser is the is for the user who is logged in
      * @return returns all the users rec from their friends
      * **/
-    public ArrayList<recomendListModel> getRec(int iduser){
+    public ArrayList<movieModel> getRec(int iduser){
         Connection con = null;
         Statement stmt = null;
         String sql;
-        userModel newUser;
-        ArrayList<recomendListModel> RecListArry = null;
+        ArrayList<movieModel> allMovies = null;
+        ArrayList<movieModel> recMovies = null;
+        ArrayList<recomendListModel> RecList = null;
         //step 2 register JDBC driver
         try {
             Class.forName(JDBC_DRIVER);
@@ -411,6 +415,8 @@ public class DBuser {
             System.out.print("creating statement.... ");
             stmt = con.createStatement();
 
+            allMovies = getMovies();
+
             sql = "SELECT * FROM recomendlist WHERE iduser = "+ iduser +";";
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -419,7 +425,14 @@ public class DBuser {
                 recList.setIduser(rs.getInt("iduser"));
                 recList.setIdmovie(rs.getInt("idmovie"));
                 recList.setIdfreind(rs.getInt("idfriend"));
-                RecListArry.add(recList);
+                int i = 0;
+                while (allMovies.size() > i){
+                    if (recList.getIdmovie() == allMovies.get(i).getIdmovie()) {
+                        recMovies.add(allMovies.get(i));
+                        break;
+                    }
+                    i++;
+                }
             }
 
             stmt.close();
@@ -437,7 +450,75 @@ public class DBuser {
                 e.printStackTrace();
             }
         }
-        return RecListArry;
+        return recMovies;
     }
 
+    /**
+     * gets the user informtion
+     * @return the information of the user
+     * @params iduser the id of the user logged in
+     **/
+    public userModel getUserInfo (int iduser){
+        Connection con = null;
+        Statement stmt = null;
+        String sql;
+        userModel user = new userModel();
+
+        //step 2 register JDBC driver
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try{//step 3 open connection
+
+            System.out.print("Connecting to db....");
+            con = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            //step 4
+            System.out.print("creating statement.... ");
+            stmt = con.createStatement();
+            sql = "SELECT * FROM users WHERE iduser ="+iduser;
+            ResultSet rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                String fname = rs.getString("fname");
+                String lname = rs.getString("lname");
+                String uname = rs.getString("uname");
+                String ename = rs.getString("ename");
+                int age = rs.getInt("age");
+                char gender = rs.getString("gender").charAt(0);
+                boolean reciveEmail = rs.getBoolean("reciveEmail");
+                String pass = rs.getString("password");
+
+                user.setAge(age);
+                user.setFname(fname);
+                user.setEname(ename);
+                user.setGender(gender);
+                user.setPass(pass);
+                user.setUname(uname);
+                user.setLname(lname);
+                user.setReciveEmail(reciveEmail);
+                user.setId(id);
+            }
+            rs.close();
+            stmt.close();
+            con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            //use to close
+            try{
+                if(stmt!=null){
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.print("closed the DB!");
+        return user;
+    }
 }
