@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -23,12 +24,19 @@ public class WatchListSubmit extends HttpServlet {
         //newItem.setUser(request.getParameter("username"));
         //newItem.setTodo(request.getParameter("todoBox"));
         //user.setTodo(newItem);
-
-        request.getRequestDispatcher("/WatchlistPage.jsp").forward(request, response);
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
+    }
+    public void getSessionofUser(HttpServletRequest request) {
+        //Obtain the session object, create a new session if doesn't exist
+        HttpSession session = request.getSession(true);
+        //get a string sessson attribute
+        String strParam = (String) session.getAttribute("MySessionVariable");
+        //get an integer sessioin attribute
+        Integer param = (Integer) session.getAttribute("MySessionVariable");
+        //set an integer session attribute
+        session.setAttribute("MySessionVariable",new Integer(param.intValue() +1));
     }
 }

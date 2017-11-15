@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 @WebServlet(name="login")
@@ -30,6 +31,12 @@ public class login extends HttpServlet {
             request.getRequestDispatcher("/login.jsp").forward(request,response);
 
         }
+        //Obtain the session object, create a new session if doesn't exist
+        HttpSession session = request.getSession(true);
+
+        //set a string session attribute
+        session.setAttribute("MySessionVariable", "MySessionAtrValue");
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

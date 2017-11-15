@@ -1,18 +1,18 @@
 package webapp;
 
 public class userModel {
-        String fname, lname, uname, id;
-        String ename, edoman, ecom;
-        int age;
+        String fname, lname, uname;
+        String ename;
+        int age, id;
         char gender;
         boolean reciveEmail;
         String pass;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -46,22 +46,6 @@ public class userModel {
 
         public void setEname(String ename) {
             this.ename = ename;
-        }
-
-        public String getEdoman() {
-            return edoman;
-        }
-
-        public void setEdoman(String edoman) {
-            this.edoman = edoman;
-        }
-
-        public String getEcom() {
-            return ecom;
-        }
-
-        public void setEcom(String ecom) {
-            this.ecom = ecom;
         }
 
         public int getAge() {
