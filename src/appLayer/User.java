@@ -22,9 +22,9 @@ public class User {
     //  db_User.setTodo(newItem);
     // }
 
-    public ArrayList<movieModel> getRec(){return db_User.getRec();}
-    public ArrayList<userModel> getFriends(){return db_User.getFriends();}
-    public ArrayList<movieModel> getMyMovieList(){ return db_User.getMyMovies();}
+    public ArrayList<movieModel> getRec(int iduser){return db_User.getRec(iduser);}
+    public ArrayList<userModel> getFriends(int iduser){return db_User.getFriends(iduser);}
+    public ArrayList<movieModel> getMyMovieList(int iduser){ return db_User.getMyMovies(iduser);}
 
 
 }
