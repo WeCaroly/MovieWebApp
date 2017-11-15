@@ -1,8 +1,6 @@
 package dataLayer;
 
 import webapp.*;
-
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -521,4 +519,198 @@ public class DBuser {
         System.out.print("closed the DB!");
         return user;
     }
+
+    /**
+     * Adds Movie to DB
+     * @params movie is the movieModel
+     * */
+    public void addMoviesToDB(movieModel movie){
+        Connection con = null;
+        Statement stmt = null;
+        String sql;
+        userModel newUser;
+        ArrayList<userModel> UserList = null;
+        //step 2 register JDBC driver
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try{//step 3 open connection
+
+            System.out.print("Connecting to db....");
+            con = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            //step 4
+            System.out.print("creating statement.... ");
+            stmt = con.createStatement();
+
+            sql = "INSERT INTO movie ('title', 'description', 'rating', 'comments') "+
+             "VALUES (\'"+movie.getTitle()+"\', \'"+movie.getDescription()+"\', \'"
+                    + movie.getRating()+"\', \'"+movie.getComment()+"\')";
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.close();
+            stmt.close();
+            con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            //use to close
+            try{
+                if(stmt!=null){
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.print("closed the DB!");
+    }
+
+    /**
+     * Adds friend to DB
+     * @param idfriend
+     * @param iduser
+     * */
+    public void addFriend(int idfriend, int iduser) {
+        Connection con = null;
+        Statement stmt = null;
+        String sql;
+        userModel newUser;
+        ArrayList<userModel> UserList = null;
+        //step 2 register JDBC driver
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {//step 3 open connection
+
+            System.out.print("Connecting to db....");
+            con = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            //step 4
+            System.out.print("creating statement.... ");
+            stmt = con.createStatement();
+
+            sql = "INSERT INTO friendlist (`idfriend`, `iduser`) VALUES (\'" + idfriend + "\', \'" + iduser + "\');";
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.close();
+            stmt.close();
+            con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            //use to close
+            try {
+                if (stmt != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Add recomendation to friend
+     * @param idmovie
+     * @param idfriend
+     * @param iduser
+     * */
+    public void addRec(int idmovie, int idfriend, int iduser){
+        Connection con = null;
+        Statement stmt = null;
+        String sql;
+
+        //step 2 register JDBC driver
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try{//step 3 open connection
+
+            System.out.print("Connecting to db....");
+            con = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            //step 4
+            System.out.print("creating statement.... ");
+            stmt = con.createStatement();
+
+            sql = "INSERT INTO recomendlist (\'idfriend\', \'iduser\', \'idmovie\') VALUES (\'"+idfriend+"\', \'"+iduser+"\', '"+idmovie+"\');";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            rs.close();
+            stmt.close();
+            con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            //use to close
+            try{
+                if(stmt!=null){
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.print("closed the DB!");
+
+    }
+
+    /**
+     * Add comments to movies
+     * @param comment
+     * @param idmovie
+     * @param iduser
+     * */
+    public void addComment(String comment, int idmovie, int iduser, String rating){
+        Connection con = null;
+        Statement stmt = null;
+        String sql;
+
+        //step 2 register JDBC driver
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try{//step 3 open connection
+
+            System.out.print("Connecting to db....");
+            con = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            //step 4
+            System.out.print("creating statement.... ");
+            stmt = con.createStatement();
+
+            sql = "INSERT INTO moviecomment (\'idmovie\', \'rating\', \'comment\', \'iduser\') " +
+                    "VALUES (\'"+idmovie+"\', \'"+rating+"\', \'"+ comment+"\', \'"+iduser+"\');";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            rs.close();
+            stmt.close();
+            con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            //use to close
+            try{
+                if(stmt!=null){
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.print("closed the DB!");
+
+    }
+
 }
