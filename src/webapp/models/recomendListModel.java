@@ -1,4 +1,4 @@
-package webapp;
+package webapp.models;
 
 public class recomendListModel {
     int idfreind, iduser, idmovie;

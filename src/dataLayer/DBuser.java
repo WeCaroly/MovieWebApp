@@ -1,6 +1,7 @@
 package dataLayer;
 
-import webapp.*;
+import webapp.models.*;
+
 import java.sql.*;
 import java.util.ArrayList;
 

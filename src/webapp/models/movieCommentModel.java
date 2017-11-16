@@ -1,4 +1,4 @@
-package webapp;
+package webapp.models;
 
 public class movieCommentModel {
     int idmovie, iduser;

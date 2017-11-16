@@ -1,4 +1,4 @@
-package webapp;
+package webapp.models;
 
 public class userModel {
         String fname, lname, uname;
