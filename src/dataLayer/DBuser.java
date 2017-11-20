@@ -171,10 +171,10 @@ public class DBuser {
 
 
            sql = "INSERT INTO user " +
-                   "(`fname`, `lname`, `uname`, `age`, `ename`, `gender`, `reciveEmail`, `password`) " +
+                   "(`fname`, `lname`, `uname`, `age`, `ename`, `reciveEmail`, `password`) " +
                    "VALUES (\'"+newUser.getFname()+"\', \'"+newUser.getFname()+"\', \'" +
-                   newUser.getUname()+"\', \'"+newUser.getAge()+"\', \'"+newUser.getEname()+"\', \'"+
-                   newUser.getGender()+"\', \'"+newUser.isReciveEmail()+"\', \'"+newUser.getPAss()+"\')";
+                   newUser.getUname()+"\', \'"+newUser.getAge()+"\', \'"+newUser.getEname()+"\', \'"
+                   +newUser.isReciveEmail()+"\', \'"+newUser.getPAss()+"\')";
            ResultSet rs = stmt.executeQuery(sql);
 
 

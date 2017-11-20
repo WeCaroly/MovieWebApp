@@ -37,9 +37,13 @@
     <li><a href="profile.jsp">Profile</a></li>
     <li><a href="login.jsp">Log Out</a></li>
 </ul>
+
 <hr>
 <h1 style="text-align: center; font-size: 64px; font-family: Helvetica;">WatchList</h1>
 <hr>
+
+    <!-- TODO ADD IN A GENERIC FOR THIS !-->
+
 
 <p><b style = "font-size:30px">Geostorm</b></p>
 <hr align = center width = 47%>

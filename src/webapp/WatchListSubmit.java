@@ -1,6 +1,8 @@
 package webapp;
 
 import appLayer.User;
+import dataLayer.DBuser;
+import webapp.models.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,19 +12,28 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.util.ArrayList;
+import appLayer.*;
 @WebServlet(name = "watchList")
 public class WatchListSubmit extends HttpServlet {
-    User user = new User();
+
+    watchList list = new watchList();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         out.print("Do post: \ntodo:"+ request.getParameter("todoBox"));
 
+        //TODO call to the db of the new list to add
 
-        //todo newItem = new todo();
-        //newItem.setUser(request.getParameter("username"));
-        //newItem.setTodo(request.getParameter("todoBox"));
-        //user.setTodo(newItem);
+//        ArrayList<movieModel> movieList = new ArrayList<movieModel>();
+//        movieList = list.getMovies();
+//
+//        //TODO check if this is needed here
+//        ArrayList<movieModel> moviePersonalList = new ArrayList<movieModel>();
+//        moviePersonalList = list.getMyMovies(Integer.parseInt(request.getParameter("userID")));
+//
+//        ArrayList<movieModel> movieRecList = new ArrayList<movieModel>();
+//        movieRecList = list.getRecMovies(Integer.parseInt(request.getParameter("userID")));
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

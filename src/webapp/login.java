@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 @WebServlet(name="login")
 public class login extends HttpServlet {
     User user = new User();
+    HttpSession session;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //from form
         PrintWriter out = response.getWriter();
@@ -25,14 +26,15 @@ public class login extends HttpServlet {
         request.setAttribute("password", request.getParameter("password"));
 
         if(user.isValidUserCredentials(request.getParameter("loginname"),request.getParameter("password"))) {
+            request.setAttribute("userID", user.getID());
             request.getRequestDispatcher("/WatchlistPage.jsp").forward(request, response);
         }else{
             request.setAttribute("errorMessage","Invalid Log in information. Try again.");
             request.getRequestDispatcher("/login.jsp").forward(request,response);
-
         }
+
         //Obtain the session object, create a new session if doesn't exist
-        HttpSession session = request.getSession(true);
+        session = request.getSession(true);
 
         //set a string session attribute
         session.setAttribute("MySessionVariable", "MySessionAtrValue");
