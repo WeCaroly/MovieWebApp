@@ -10,9 +10,10 @@ public class DBuser {
     //JDB driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 
-    //static final String DB_URL = "jdbc:mysql://localhost/webbapplogin";
+    //static final String DB_URL = "jdbc:mysql://localhost/fithbrichinc";
   //  static final String DB_URL = "jdbc:mysql://aa19qfog95k5ari.cmg7kglbmqka.us-east-1.rds.amazonaws.com:3306/webbapplogin";
-    static final String DB_URL = "jdbc:mysql://dbmovieinstance.cmg7kglbmqka.us-east-1.rds.amazonaws.com:3306/MasterMovieDB";
+    //static final String DB_URL = "jdbc:mysql://dbmovieinstance.cmg7kglbmqka.us-east-1.rds.amazonaws.com:3306/MasterMovieDB";
+   static final String DB_URL = "jdbc:mysql://dbmovieinstance.cmg7kglbmqka.us-east-1.rds.amazonaws.com:3306/fithbrichinc";
     private static final String USER = "root";
     static final String PASS = "password";
 
