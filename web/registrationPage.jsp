@@ -7,7 +7,7 @@
 <div class="box" style="background-color: aliceblue; border-radius: 10px;">
 <h1 style="text-align: center; font-size: 64px; font-family: Helvetica;">Registration Details</h1>
 
-<form action="WatchlistPage.jsp?reqType=register" method="POST" style="font-size: 24px; font-family: Helvetica;">
+<form action="WatchlistPage.jsp?reqType=register" method="post" style="font-size: 24px; font-family: Helvetica;">
     <div class="information" style="text-align: center; font-family: Helvetica;">
         First name:&nbsp;<input type="text" name="fname" style="width: 300px; height: 40px; border: solid black;" />
         <br/><br/>
