@@ -10,33 +10,27 @@
 <html>
 <head>
     <style>
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
+        a {
+             padding: 10px;
+             padding-top: 20px;
+             padding-bottom: 20px;
+             width: 100%;
+             font-size: 32px;
+             color: white;
+             text-decoration: none;
 
-        li {
-            float: left;
-        }
-
-        li a {
-            display: block;
-            padding: 8px;
-            background-color: #dddddd;
         }
     </style>
 </head>
-<body>
-
-<ul>
-    <li><a href="WatchlistPage.jsp">Watchlist</a></li>
-    <li><a href="profile.jsp">Profile</a></li>
-    <li><a href="login.jsp">Log Out</a></li>
-</ul>
-<h1>Profile</h1>
-
-
+<body style="background-color: #2E2E2E; margin: 0;">
+<div style="background-color: black; ">
+    <h1 style="color: white; font-size: 32px; margin: 0; padding-left: 10px; padding-top: 10px;">My Profile</h1>
+        <div class = "Menu" style="display: block; background-color: black; padding-top: 20px; padding-bottom: 20px;">
+                 <a href="WatchlistPage.jsp">My Watchlist   |</a>
+                 <a href="profile.jsp">My Profile   |</a>
+                 <a href="search.jsp">Search Movies   |</a>
+                 <a href="login.jsp">Log Out</a>
+        </div>
+</div>
 </body>
 </html>

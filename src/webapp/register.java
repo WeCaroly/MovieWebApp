@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 ////register
+
 public class register {
     User user = new User();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
