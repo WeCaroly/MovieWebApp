@@ -1,8 +1,15 @@
 package webapp.models;
 
 public class recomendListModel {
-    int idfreind, iduser, idmovie;
+    int idrecomendlist, idfreind, iduser, idmovie;
 
+    public int getIdrecomendlist() {
+        return idrecomendlist;
+    }
+
+    public void setIdrecomendlist(int idrecomendlist) {
+        this.idrecomendlist = idrecomendlist;
+    }
     public void setIduser(int iduser) {
         this.iduser = iduser;
     }

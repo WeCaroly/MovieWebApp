@@ -1,7 +1,15 @@
 package webapp.models;
 
 public class movieListModel {
-    int iduser, idmovie;
+    int idList, iduser, idmovie;
+
+    public int getIdList() {
+        return idList;
+    }
+
+    public void setIdList(int idList) {
+        this.idList = idList;
+    }
 
     public void setIdmovie(int idmovie) {
         this.idmovie = idmovie;
