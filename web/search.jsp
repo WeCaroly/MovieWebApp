@@ -30,12 +30,10 @@
 </head>
 <body style="background-color: #2E2E2E; margin: 0;">
 <div style="background-color: black; ">
-    <h1 style="color: white; font-size: 32px; margin: 0; padding-left: 10px; padding-top: 10px;">Search Movies</h1>
-
-    <div class = "Menu" style="display: block; background-color: black; padding-top: 20px; padding-bottom: 20px;">
+      <div class = "Menu" style="display: block; background-color: black; padding-top: 20px; padding-bottom: 20px;">
         <a href="WatchlistPage.jsp">My Watchlist   |</a>
         <a href="profile.jsp">My Profile   |</a>
-        <a href="search.jsp">Search Movies   |</a>
+        <a href="search.jsp" style="font-weight: bold;">Search Movies   |</a>
         <a href="login.jsp">Log Out</a>
     </div>
 </div>

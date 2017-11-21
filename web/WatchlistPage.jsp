@@ -11,33 +11,34 @@
         li {
             float: left;
         }
-        li a {
-	          display: block;
-	          padding: 8px;
-	          background-color: #dddddd;
+        a {
+            padding: 10px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            width: 100%;
+            font-size: 32px;
+            color: white;
+            text-decoration: none;
+
         }
-        
-        body {
-			  background-color: #ECE8E8;
-		      width: 700px;
-		      border: 10px solid #F51616;
-		      border-radius: 15px;
-		}
-		
+        }
+
 		p {
 			text-align: center;
 		}
     </style>
 </head>
-<body style="background-color: #2E2E2E; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); overflow-y: scroll; height: 100%;">
+<body style="background-color: #2E2E2E; margin: 0;">
 
-<div class="box" style="background-color: aliceblue; border-radius: 10px; overflow-y:scroll; height: 100%; font-family: Helvetica;">
-<ul>
-    <li><a href="WatchlistPage.jsp">Watchlist</a></li>
-    <li><a href="profile.jsp">Profile</a></li>
-    <li><a href="login.jsp">Log Out</a></li>
-</ul>
 
+    <div class = "Menu" style="display: block; background-color: black; padding-top: 20px; padding-bottom: 20px;">
+        <a href="WatchlistPage.jsp" style="font-weight: bold;">My Watchlist   |</a>
+        <a href="profile.jsp">My Profile   |</a>
+        <a href="search.jsp">Search Movies   |</a>
+        <a href="login.jsp">Log Out</a>
+    </div>
+
+<div style="text-align: center; color: white;">
 <hr>
 <h1 style="text-align: center; font-size: 64px; font-family: Helvetica;">WatchList</h1>
 <hr>
@@ -74,8 +75,8 @@
 <p><b style = "font-size:20px">Release Date: November 10, 2017</b></p>
 <p><b style = "font-size:20px">Plot Preview</b></p>
 <p>What starts out as a lavish train ride through Europe quickly unfolds into one of the most stylish, suspenseful and thrilling mysteries ever told. From the novel by best selling author Agatha Christie, "Murder on the Orient Express" tells the tale of thirteen strangers stranded on a train, where everyone's a suspect. One man must race against time to solve the puzzle before the murderer strikes again.</p>
-
 </div>
+
 
 </body>
 </html>
