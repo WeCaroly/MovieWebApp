@@ -13,7 +13,7 @@ public class DBuser {
     //static final String DB_URL = "jdbc:mysql://localhost/fithbrichinc";
   //  static final String DB_URL = "jdbc:mysql://aa19qfog95k5ari.cmg7kglbmqka.us-east-1.rds.amazonaws.com:3306/webbapplogin";
     //static final String DB_URL = "jdbc:mysql://dbmovieinstance.cmg7kglbmqka.us-east-1.rds.amazonaws.com:3306/MasterMovieDB";
-   static final String DB_URL = "jdbc:mysql://dbmovieinstance.cmg7kglbmqka.us-east-1.rds.amazonaws.com:3306/fithbrichinc";
+   static final String DB_URL = "jdbc:mysql://fithbrichinc.cmg7kglbmqka.us-east-1.rds.amazonaws.com:3306/fithbrichinc";
     private static final String USER = "root";
     static final String PASS = "password";
 
@@ -44,8 +44,8 @@ public class DBuser {
             System.out.print("creating statement.... ");
             stmt = con.createStatement();
 
-            sql = "SELECT * FROM users WHERE uname = \"" + sUsername
-                    + "\" AND pass = \"" + sPassowrd+ "\"" ;
+            sql = "SELECT * FROM user WHERE uname = \"" + sUsername
+                    + "\" AND password = \"" + sPassowrd+ "\"" ;
             System.out.println(sql);
 
             ResultSet rs = stmt.executeQuery(sql);
@@ -98,7 +98,7 @@ public class DBuser {
             System.out.print("creating statement.... ");
             stmt = con.createStatement();
 
-            sql = "SELECT * FROM users";
+            sql = "SELECT * FROM user";
             System.out.println(sql);
 
             ResultSet rs = stmt.executeQuery(sql);
@@ -111,7 +111,7 @@ public class DBuser {
                 String uname = rs.getString("uname");
                 String ename = rs.getString("ename");
                 int age = rs.getInt("age");
-                char gender = rs.getString("gender").charAt(0);
+                char gender = 'N';
                 boolean reciveEmail = rs.getBoolean("reciveEmail");
                 String pass = rs.getString("password");
 
@@ -223,7 +223,7 @@ public class DBuser {
             stmt = con.createStatement();
 
 
-            sql = "SELECT * FROM users";
+            sql = "SELECT * FROM user";
             ResultSet rs = stmt.executeQuery(sql);
             //String sql2 = "SELECT * FROM moviecommt WHERE idmovie = "+idmovie;
             //ResultSet rs2 = stmt.executeQuery(sql2);
@@ -353,11 +353,10 @@ public class DBuser {
 
             ArrayList<userModel> allUsers = getAllUsers();
 
-            sql = "SELECT * FROM friendlist WHERE userid = "+iduser+";";
+            sql = "SELECT * FROM friendlist WHERE iduser = "+iduser+";";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()){
                 friendListModel newfriend = new friendListModel();
-                newfriend.setIdmovie(rs.getInt("idmovie"));
                 newfriend.setIdfriend(rs.getInt("idfriend"));
                 newfriend.setIduser(rs.getInt("iduser"));
                 int i = 0;
@@ -478,7 +477,7 @@ public class DBuser {
             //step 4
             System.out.print("creating statement.... ");
             stmt = con.createStatement();
-            sql = "SELECT * FROM users WHERE iduser ="+iduser;
+            sql = "SELECT * FROM user WHERE iduser ="+iduser;
             ResultSet rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
@@ -488,14 +487,12 @@ public class DBuser {
                 String uname = rs.getString("uname");
                 String ename = rs.getString("ename");
                 int age = rs.getInt("age");
-                char gender = rs.getString("gender").charAt(0);
                 boolean reciveEmail = rs.getBoolean("reciveEmail");
                 String pass = rs.getString("password");
 
                 user.setAge(age);
                 user.setFname(fname);
                 user.setEname(ename);
-                user.setGender(gender);
                 user.setPass(pass);
                 user.setUname(uname);
                 user.setLname(lname);
@@ -547,9 +544,8 @@ public class DBuser {
             System.out.print("creating statement.... ");
             stmt = con.createStatement();
 
-            sql = "INSERT INTO movie ('title', 'description', 'rating', 'comments') "+
-             "VALUES (\'"+movie.getTitle()+"\', \'"+movie.getDescription()+"\', \'"
-                    + movie.getRating()+"\', \'"+movie.getComment()+"\')";
+            sql = "INSERT INTO movie ('title', 'description') "+
+             "VALUES (\'"+movie.getTitle()+"\', \'"+movie.getDescription()+"\')";
             ResultSet rs = stmt.executeQuery(sql);
             rs.close();
             stmt.close();
@@ -596,7 +592,7 @@ public class DBuser {
             System.out.print("creating statement.... ");
             stmt = con.createStatement();
 
-            sql = "INSERT INTO friendlist (`idfriend`, `iduser`) VALUES (\'" + idfriend + "\', \'" + iduser + "\');";
+            sql = "INSERT INTO friendlist ('idfriend', 'iduser') VALUES (\'" + idfriend + "\', \'" + iduser + "\');";
             ResultSet rs = stmt.executeQuery(sql);
             rs.close();
             stmt.close();
@@ -642,7 +638,7 @@ public class DBuser {
             System.out.print("creating statement.... ");
             stmt = con.createStatement();
 
-            sql = "INSERT INTO recomendlist (\'idfriend\', \'iduser\', \'idmovie\') VALUES (\'"+idfriend+"\', \'"+iduser+"\', '"+idmovie+"\');";
+            sql = "INSERT INTO recomendlist ('idfriend', 'iduser', 'idmovie') VALUES (\'"+idfriend+"\', \'"+iduser+"\', '"+idmovie+"\');";
             ResultSet rs = stmt.executeQuery(sql);
 
             rs.close();
@@ -691,7 +687,7 @@ public class DBuser {
             System.out.print("creating statement.... ");
             stmt = con.createStatement();
 
-            sql = "INSERT INTO moviecomment (\'idmovie\', \'rating\', \'comment\', \'iduser\') " +
+            sql = "INSERT INTO moviecomment ('idmovie', 'rating', 'comment', 'iduser') " +
                     "VALUES (\'"+idmovie+"\', \'"+rating+"\', \'"+ comment+"\', \'"+iduser+"\');";
             ResultSet rs = stmt.executeQuery(sql);
 

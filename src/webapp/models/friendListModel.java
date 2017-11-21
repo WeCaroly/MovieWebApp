@@ -1,14 +1,14 @@
 package webapp.models;
 
 public class friendListModel {
-    int idmovie, idfriend, iduser;
+    int idfriendList, idfriend, iduser;
 
-    public void setIdmovie(int idmovie) {
-        this.idmovie = idmovie;
+    public int getIdfriendList() {
+        return idfriendList;
     }
 
-    public int getIdmovie() {
-        return idmovie;
+    public void setIdfriendList(int idfriendList) {
+        this.idfriendList = idfriendList;
     }
 
     public int getIdfriend() {
