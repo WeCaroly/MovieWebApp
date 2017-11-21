@@ -25,6 +25,7 @@
 <body style="background-color: #2E2E2E; margin: 0;">
 <div style="background-color: black; ">
         <div class = "Menu" style="display: block; background-color: black; padding-top: 20px; padding-bottom: 20px;">
+            <h1 style = "float: right; color: white; margin: 0;">Fifth Brick Inc.</h1>
                  <a href="WatchlistPage.jsp">My Watchlist   |</a>
                  <a href="profile.jsp" style="font-weight: bold;">My Profile   |</a>
                  <a href="search.jsp">Search Movies   |</a>

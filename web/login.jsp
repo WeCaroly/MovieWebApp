@@ -9,9 +9,31 @@
 <html>
 <head>
     <title>Log In</title>
+	<style>
+		.login{
+			border: 10px solid #F51616;
+			border-radius: 15px;
+			background-color: aliceblue;
+			padding-right: 50px;
+			padding-left: 50px;
+			padding-top: 50px;
+			padding-bottom: 50px;
+			top: 40%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			position: fixed;
+		}
+		body{
+			background-color: #2E2E2E;
+			margin: 0;
+		}
+	</style>
 </head>
-<body style="background-color: #2E2E2E; position: fixed; top: 40%; left: 50%; transform: translate(-50%, -50%);  border-radius: 15px;">
-<div style="border: 10px solid #F51616; border-radius: 15px; background-color: aliceblue; padding-right: 50px; padding-left: 50px; padding-top: 5px; padding-bottom: 50px;">
+<body>
+	<div class = "Menu" style="display: block; background-color: black; padding-bottom: 80px;">
+		<h1 style = "float: right; color: white; padding-top: 20px; margin: 0;">Fifth Brick Inc.</h1>
+	</div>
+	<div class="Login">
 	<h1 style="font-size: 64px; text-align: center; font-family: Helvetica;">Log In</h1>
 		<form action="/login" method="post" style="font-size: 24px;">
     		User-name:&nbsp;<input type="text" name="loginname" style="width: 300px; height: 40px; border: solid black;"/>
@@ -28,6 +50,7 @@
     	   </div>
     	</form>
 </div>
+
 <p style="color: red">${errorMessage}</p>
 </body>
 </html>

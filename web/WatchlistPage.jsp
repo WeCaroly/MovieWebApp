@@ -2,15 +2,6 @@
 <html>
 <head>
     <style>
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-        li {
-            float: left;
-        }
         a {
             padding: 10px;
             padding-top: 20px;
@@ -32,6 +23,7 @@
 
 
     <div class = "Menu" style="display: block; background-color: black; padding-top: 20px; padding-bottom: 20px;">
+        <h1 style = "float: right; color: white; margin: 0;">Fifth Brick Inc.</h1>
         <a href="WatchlistPage.jsp" style="font-weight: bold;">My Watchlist   |</a>
         <a href="profile.jsp">My Profile   |</a>
         <a href="search.jsp">Search Movies   |</a>
