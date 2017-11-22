@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebServlet(name="register")
+@WebServlet(name="registerServ")
 public class register {
     User user = new User();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

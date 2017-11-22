@@ -7,28 +7,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name="WatchList")
+@WebServlet(name="main")
 public class WatchListSubmit extends HttpServlet {
     watchList list = new watchList();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         out.print("Do post: \ntodo:"+ request.getParameter("todoBox"));
 
+
         //TODO call to the db to get the info
 
 //        ArrayList<movieModel> movieList = new ArrayList<movieModel>();
 //        movieList = list.getMovies();
 //
-//        //TODO check if this is needed here
+//
 //        ArrayList<movieModel> moviePersonalList = new ArrayList<movieModel>();
 //        moviePersonalList = list.getMyMovies(Integer.parseInt(request.getParameter("userID")));
-//
-//        ArrayList<movieModel> movieRecList = new ArrayList<movieModel>();
-//        movieRecList = list.getRecMovies(Integer.parseInt(request.getParameter("userID")));
 
     }
 
