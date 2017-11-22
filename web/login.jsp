@@ -11,9 +11,9 @@
     <title>Log In</title>
 	<style>
 		.login{
-			border: 10px solid #F51616;
+            border: solid white 3px;
 			border-radius: 15px;
-			background-color: aliceblue;
+			background-color: #2E2E2E;
 			padding-right: 50px;
 			padding-left: 50px;
 			padding-top: 50px;
@@ -34,14 +34,16 @@
 		<h1 style = "float: right; color: white; padding-top: 20px; margin: 0;">Fifth Brick Inc.</h1>
 	</div>
 	<div class="Login">
-	<h1 style="font-size: 64px; text-align: center; font-family: Helvetica;">Log In</h1>
-		<form action="/login" method="post" style="font-size: 24px;">
-    		User-name:&nbsp;<input type="text" name="loginname" style="width: 300px; height: 40px; border: solid black;"/>
+        <hr>
+        <h1 style="text-align: center; font-size: 64px; color: white; font-family: Helvetica;">Log In</h1>
+        <hr>
+		<form action="/login" method="post" style="font-size: 24px; color: white; padding-top: 20px;">
+    		User-name:&nbsp;<input type="text" name="loginname" style="width: 300px; height: 40px; border: solid white;"/>
     		<br><br>
-   			 &nbsp;&nbsp;Password:&nbsp;<input type="text" name="password" style="width: 301px; height: 40px; border: solid black;"/>
+   			 &nbsp;&nbsp;Password:&nbsp;<input type="text" name="password" style="width: 301px; height: 40px; border: solid white;"/>
    			 <br><br>
     		<div style="text-align:center;">
-        		<input type="submit" value="Submit" src="http://www.pngmart.com/files/3/Submit-Button-Transparent-PNG.png" style="cursor: pointer; font-size: 24px;"/>
+        		<input type="submit" value="Submit" style="cursor: pointer; font-size: 24px;"/>
         		</div>
 		</form>
     	<form action="registrationPage.jsp" method="get">

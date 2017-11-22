@@ -32,5 +32,8 @@
                  <a href="login.jsp">Log Out</a>
         </div>
 </div>
+<hr>
+<h1 style="text-align: center; font-size: 64px; color: white; font-family: Helvetica;">My Profile</h1>
+<hr>
 </body>
 </html>
