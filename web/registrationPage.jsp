@@ -9,11 +9,10 @@
        .box{
            border: solid white 3px;
            border-radius: 15px;
-           position: fixed;
-           top: 40%;
-           left: 50%;
-           transform: translate(-50%, -50%);
-           margin-top: 150px;
+           text-align: center;
+           margin: 0 auto;
+           width: 35%;
+           margin-top: 15px;
        }
     </style>
 </head>
@@ -48,7 +47,15 @@
         <input type="checkbox" name="reciveEmail" style="width: 30px; height: 20px; border: solid white;" /> Yes
 
         <br/>
-        <p><input type="submit" value="Submit" style="cursor: pointer; font-size: 24px;"/></p>
+        <p>
+            <form action="WatchlistPage.jsp" method="get">
+                <input type="submit" value="Submit" style="cursor: pointer; font-size: 24px;"/>
+            </form>
+            <form action="login.jsp" method="get">
+                 <input type="submit" value="Cancel" style="cursor: pointer; font-size: 24px;"/>
+            </form>
+        </p>
+
     </div>
 </form>
 </div>

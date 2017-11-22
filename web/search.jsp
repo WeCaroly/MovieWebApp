@@ -38,6 +38,9 @@
         <a href="login.jsp">Log Out</a>
     </div>
 </div>
+<hr>
+<h1 style="text-align: center; font-size: 64px; color: white; font-family: Helvetica;">Search Movies </h1>
+<hr>
 <div class = "search" style=" padding-top: 20px; margin-left: 10px; margin-right: 10px;">
 <input type="text" name="search" placeholder="Search" style="width: 100%; height: 30px;">
 </div>
