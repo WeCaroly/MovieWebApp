@@ -25,6 +25,7 @@
             cursor: pointer;
         }
 
+
         .modal-state {
             display: none;
         }
@@ -142,16 +143,29 @@
             <p><b style = "font-size:20px">Release Date: October 20, 2017</b></p>
             <p><b style = "font-size:20px">Plot Preview</b></p>
             <p>An experimental weather regulating system called Dutch Boy has been weaponized to take out countries by creating geostorms.</p>
-            <button type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Reviews</button>
 
-            <!------------For the Modal-------------------------------->
-            <label class="btn" for="modal-1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
-
-            <input class="modal-state" id="modal-1" type="checkbox" />
+            <!------------All Reviews Modal------------------------------->
+            <label class="btn" for="modal-1.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px; padding-right: 20px;">Reviews</label>
+            <input class="modal-state" id="modal-1.1" type="checkbox" />
             <div class="modal">
-                <label class="modal__bg" for="modal-1"></label>
+                <label class="modal__bg" for="modal-1.1"></label>
                 <div class="modal__inner" style="text-align: center">
-                    <label class="modal__close" for="modal-1"></label>
+                    <label class="modal__close" for="modal-1.1"></label>
+                    <h2 class="modal-title" style="color:black;">All Reviews</h2>
+                </div>
+            </div>
+
+            <!-------------------------------------------------------->
+
+            <!------------Write Review Modal-------------------------------->
+            <label class="btn" for="modal-1.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px; padding-left: 20px;">Add Review</label>
+
+            <input class="modal-state" id="modal-1.2" type="checkbox" />
+            <div class="modal">
+                <label class="modal__bg" for="modal-1.2"></label>
+
+                <div class="modal__inner" style="text-align: center">
+                    <label class="modal__close" for="modal-1.2"></label>
                 <h2 class="modal-title" style="color:black;">Add Review</h2>
 
                     <textarea name="Text" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
@@ -178,16 +192,27 @@
             <p><b style = "font-size:20px">Release Date: December 15, 2017</b></p>
             <p><b style = "font-size:20px">Plot Preview</b></p>
             <p>Having taken her first steps into a larger world in Star Wars: The Force Awakens (2015), Rey continues her epic journey with Finn, Poe, and Luke Skywalker in the next chapter of the saga.</p>
-            <button type="button" style="padding-top:10px; cursor: pointer; font-size: 24px;">Reviews</button>
 
-            <!------------For the Modal-------------------------------->
-            <label class="btn" for="modal-1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
-
-            <input class="modal-state" id="modal-1" type="checkbox" />
+            <!------------All Reviews Modal-------------------------------->
+            <label class="btn" for="modal-2.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px; padding-right: 20px;">Reviews</label>
+            <input class="modal-state" id="modal-2.1" type="checkbox" />
             <div class="modal">
-                <label class="modal__bg" for="modal-1"></label>
+                <label class="modal__bg" for="modal-2.1"></label>
                 <div class="modal__inner" style="text-align: center">
-                    <label class="modal__close" for="modal-1"></label>
+                    <label class="modal__close" for="modal-2.1"></label>
+                    <h2 class="modal-title" style="color:black;">All Reviews</h2>
+                </div>
+            </div>
+            <!-------------------------------------------------------->
+
+            <!------------Write Review Modal-------------------------------->
+            <label class="btn" for="modal-2.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px; padding-left: 20px;">Add Review</label>
+
+            <input class="modal-state" id="modal-2.2" type="checkbox" />
+            <div class="modal">
+                <label class="modal__bg" for="modal-2.2"></label>
+                <div class="modal__inner" style="text-align: center">
+                    <label class="modal__close" for="modal-2.2"></label>
                     <h2 class="modal-title" style="color:black;">Add Review</h2>
 
                     <textarea name="Text" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
@@ -213,16 +238,27 @@
             <p><b style = "font-size:20px">Release Date: November 3, 2017</b></p>
             <p><b style = "font-size:20px">Plot Preview</b></p>
             <p>In Marvel Studios' Thor: Ragnarok, Thor is imprisoned on the other side of the universe without his mighty hammer and finds himself in a race against time to get back to Asgard to stop Ragnarok-the destruction of his homeworld and the end of Asgardian civilization-at the hands of an all-powerful new threat, the ruthless Hela. But first he must survive a deadly gladiatorial contest that pits him against his former ally and fellow Avenger-the Incredible Hulk!</p>
-            <button type="button" style="padding-top:10px; cursor: pointer; font-size: 24px;">Reviews</button>
 
-            <!------------For the Modal-------------------------------->
-            <label class="btn" for="modal-1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
-
-            <input class="modal-state" id="modal-1" type="checkbox" />
+            <!------------All Reviews Modal-------------------------------->
+            <label class="btn" for="modal-3.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px; padding-right: 20px;">Reviews</label>
+            <input class="modal-state" id="modal-3.1" type="checkbox" />
             <div class="modal">
-                <label class="modal__bg" for="modal-1"></label>
+                <label class="modal__bg" for="modal-3.1"></label>
                 <div class="modal__inner" style="text-align: center">
-                    <label class="modal__close" for="modal-1"></label>
+                    <label class="modal__close" for="modal-3.1"></label>
+                    <h2 class="modal-title" style="color:black;">All Reviews</h2>
+                </div>
+            </div>
+            <!-------------------------------------------------------->
+
+            <!------------Write Review Modal-------------------------------->
+            <label class="btn" for="modal-3.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px; padding-left: 20px;">Add Review</label>
+
+            <input class="modal-state" id="modal-3.2" type="checkbox" />
+            <div class="modal">
+                <label class="modal__bg" for="modal-3.2"></label>
+                <div class="modal__inner" style="text-align: center">
+                    <label class="modal__close" for="modal-3.2"></label>
                     <h2 class="modal-title" style="color:black;">Add Review</h2>
 
                     <textarea name="Text" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
@@ -249,16 +285,27 @@
             <p><b style = "font-size:20px">Release Date: November 10, 2017</b></p>
             <p><b style = "font-size:20px">Plot Preview</b></p>
             <p>What starts out as a lavish train ride through Europe quickly unfolds into one of the most stylish, suspenseful and thrilling mysteries ever told. From the novel by best selling author Agatha Christie, "Murder on the Orient Express" tells the tale of thirteen strangers stranded on a train, where everyone's a suspect. One man must race against time to solve the puzzle before the murderer strikes again.</p>
-            <button type="button" style="padding-top:10px;  cursor: pointer; font-size: 24px;">Reviews</button>
 
-            <!------------For the Modal-------------------------------->
-            <label class="btn" for="modal-1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
-
-            <input class="modal-state" id="modal-1" type="checkbox" />
+            <!------------All Reviews Modal-------------------------------->
+            <label class="btn" for="modal-4.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px; padding-right: 20px;">Reviews</label>
+            <input class="modal-state" id="modal-4.1" type="checkbox" />
             <div class="modal">
-                <label class="modal__bg" for="modal-1"></label>
+                <label class="modal__bg" for="modal-4.1"></label>
                 <div class="modal__inner" style="text-align: center">
-                    <label class="modal__close" for="modal-1"></label>
+                    <label class="modal__close" for="modal-4.1"></label>
+                    <h2 class="modal-title" style="color:black;">All Reviews</h2>
+                </div>
+            </div>
+            <!-------------------------------------------------------->
+
+            <!------------Write Review Modal------------------------------->
+            <label class="btn" for="modal-4.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px; padding-left: 20px;">Add Review</label>
+
+            <input class="modal-state" id="modal-4.2" type="checkbox" />
+            <div class="modal">
+                <label class="modal__bg" for="modal-4.2"></label>
+                <div class="modal__inner" style="text-align: center">
+                    <label class="modal__close" for="modal-4.2"></label>
                     <h2 class="modal-title" style="color:black;">Add Review</h2>
 
                     <textarea name="Text" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>

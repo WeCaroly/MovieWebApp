@@ -70,7 +70,7 @@
             <br/>
             <p>
                 <input type="submit" value="Update Profile Information" style="cursor: pointer; font-size: 24px;"/>
-                    <form action="WatchlistPage.jsp" method="get">
+                    <form action="WatchlistPage.jsp" method="Post">
                         <input type="submit" value="Cancel" style="cursor: pointer; font-size: 24px;"/>
                    </form>
             </p>
