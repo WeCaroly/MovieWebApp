@@ -6,14 +6,7 @@
 <head>
     <script>
         function copyText(){
-            if("input1")
-                document.getElementById("output1").value=document.getElementById("input1").value;
-            if("input2")
-                document.getElementById("output2").value=document.getElementById("input2").value;
-            if("input3")
-                document.getElementById("output3").value=document.getElementById("input3").value;
-            if("input4")
-                document.getElementById("output3").value=document.getElementById("input4").value;
+                document.getElementById("output").value=document.getElementById("input").value;
          }
     </script>
 
@@ -180,16 +173,18 @@
         <p><b style = "font-size:30px; color: white;"> <%=  List.get(i).getTitle()%></b></p>
         <p><b style = "font-size:20px; color: white;">Plot Preview</b></p>
         <p style="color: white;"><%=  List.get(i).getDescription()%></p>
+
+
         <!------------All Reviews Modal-------------------------------->
     <div style="text-align: center">
-    <label class="btn" for="modal-4.1" type="button" style="padding-top: 10px; padding-right: 20px; cursor: pointer; font-size: 24px;">Reviews</label>
+    <label class="btn" for="modal-4.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Reviews</label>
         <input class="modal-state" id="modal-4.1" type="checkbox" />
         <div class="modal">
             <label class="modal__bg" for="modal-4.1"></label>
             <div class="modal__inner" style="text-align: center">
                 <label class="modal__close" for="modal-4.1"></label>
                 <h2 class="modal-title" style="color:black;">All Reviews</h2>
-                <input type="text" id="output4" style="width: 100%;">
+                <input type="text" id="output" style="width: 100%;">
             </div>
         </div>
     &nbsp;&nbsp;&nbsp;
@@ -205,7 +200,7 @@
                 <h2 class="modal-title" style="color:black;">Add Review</h2>
 
                 <form action="/moviePage" method="post">
-                <textarea name="Text" id="input4" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 100%;"></textarea>
+                <textarea name="Text" id="input" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 100%;"></textarea>
                 <button type="button" onclick="copyText();" style="cursor: pointer; font-size: 24px;">Save Review</button>
                 </form>
                 <br/>

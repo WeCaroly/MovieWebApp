@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
+
 <head>
     <style>
         a {
@@ -52,7 +53,7 @@
     <form action="/register" method="post" style="font-size: 24px; font-family: Helvetica; color: white; padding-top: 20px;">
 
         <div class="information" style="text-align: center; font-family: Helvetica;">
-            First name:&nbsp;<input type="text" name="fname" style="width: 300px; height: 40px; border: solid white;" />
+            First name:&nbsp;<input type="text" name="fname"  style="width: 300px; height: 40px; border: solid white;" />
             <br/><br/>
             Last name:&nbsp;<input type="text" name="lname"style="width: 302px; height: 40px; border: solid white;" />
             <br/><br/>
@@ -70,7 +71,7 @@
             <br/>
             <p>
                 <input type="submit" value="Update Profile Information" style="cursor: pointer; font-size: 24px;"/>
-                    <form action="WatchlistPage.jsp" method="Post">
+                    <form action="WatchlistPage.jsp" method="get">
                         <input type="submit" value="Cancel" style="cursor: pointer; font-size: 24px;"/>
                    </form>
             </p>
