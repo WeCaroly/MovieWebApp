@@ -134,7 +134,9 @@
 <hr>
 <h1 style="text-align: center; font-size: 64px; color: white; font-family: Helvetica;">My WatchList</h1>
 <hr>
-
+    <p style="color: white; font-size: 24px;">Instructions: To add movies to your watchlist, click on the "Search Movies" tab located on the Top Menu. Then, search for a movie you would like to add,
+    then click "Add Movie to Watchlist".
+    </p>
     <!-- TODO ADD IN A GENERIC FOR THIS !-->
 
 <table>
