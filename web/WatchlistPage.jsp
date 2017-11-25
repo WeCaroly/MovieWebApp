@@ -22,8 +22,9 @@
             background-color: white;
             color: black;
             font-family: Helvetica;
-        }
-        .modal {
+            display: inline-block;
+                   }
+          .modal {
             opacity: 0;
             visibility: hidden;
             position: fixed;
@@ -163,7 +164,7 @@
     request.setAttribute("AllMovieList",List);
 %>
 <table>
-    <tr style ="padding-top: 5em; padding-bottom: 5em; border: solid white 3px; border-radius: 5em; margin-left: 50px;">
+    <tr style ="padding-top: 5em; padding-bottom: 5em;  margin-left: 50px;">
         <td style = "width:50%">
             <!--img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTA0OTQwMTIxNzheQTJeQWpwZ15BbWU4MDQ1MzI3OTMy._V1_UX182_CR0,0,182,268_AL_.jpg">!--->
 
@@ -172,14 +173,16 @@
         <%
         while(i<max) {
             %>
-        <td id="<%=i%>Tab" >
+        <tr id="<%=i%>Tab" >
+            <td style="border:solid white 3px;">
         <!-- TODO add in cross ref to the movie posters !-->
 
-        <p><b style = "font-size:30px"> <%=  List.get(i).getTitle()%></b></p>
-        <p><b style = "font-size:20px">Plot Preview</b></p>
-        <p><%=  List.get(i).getDescription()%></p>
+        <p><b style = "font-size:30px; color: white;"> <%=  List.get(i).getTitle()%></b></p>
+        <p><b style = "font-size:20px; color: white;">Plot Preview</b></p>
+        <p style="color: white;"><%=  List.get(i).getDescription()%></p>
         <!------------All Reviews Modal-------------------------------->
-        <label class="btn" for="modal-4.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Reviews</label>
+    <div style="text-align: center">
+    <label class="btn" for="modal-4.1" type="button" style="padding-top: 10px; padding-right: 20px; cursor: pointer; font-size: 24px;">Reviews</label>
         <input class="modal-state" id="modal-4.1" type="checkbox" />
         <div class="modal">
             <label class="modal__bg" for="modal-4.1"></label>
@@ -189,6 +192,7 @@
                 <input type="text" id="output4" style="width: 100%;">
             </div>
         </div>
+    &nbsp;&nbsp;&nbsp;
         <!-----------------todo ADD LINK TO GENERIC PAGE AND SEND IN SELCTED ID FROM OBJ --------------------------------------->
         <!------------Write Review Modal TODO ADD LINK------------------------------->
         <label class="btn" for="modal-4.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
@@ -201,13 +205,20 @@
                 <h2 class="modal-title" style="color:black;">Add Review</h2>
 
                 <form action="/moviePage" method="post">
-                <textarea name="Text" id="input4" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
+                <textarea name="Text" id="input4" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 100%;"></textarea>
                 <button type="button" onclick="copyText();" style="cursor: pointer; font-size: 24px;">Save Review</button>
                 </form>
                 <br/>
             </div>
         </div>
-        </td>
+    </div>
+            </td>
+        </tr>
+<tr>
+    <td>
+        <br />
+    </td>
+</tr>
         <%
                 i++;
         }
