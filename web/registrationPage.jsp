@@ -50,7 +50,7 @@
         <br/>
         <p>
             <form action="WatchlistPage.jsp" method="get">
-                <input type="submit" value="Submit" style="cursor: pointer; font-size: 24px;"/>
+                <input type="submit" value="Submit" onclick="copyText2();" style="cursor: pointer; font-size: 24px;"/>
             </form>
             <form action="login.jsp" method="get">
                  <input type="submit" value="Cancel" style="cursor: pointer; font-size: 24px;"/>

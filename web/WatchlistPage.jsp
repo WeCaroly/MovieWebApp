@@ -171,6 +171,7 @@
         <!-- TODO add in cross ref to the movie posters !-->
 
         <p><b style = "font-size:30px; color: white;"> <%=  List.get(i).getTitle()%></b></p>
+                <hr style = "width: 40%;">
         <p><b style = "font-size:20px; color: white;">Plot Preview</b></p>
         <p style="color: white;"><%=  List.get(i).getDescription()%></p>
 
@@ -199,7 +200,7 @@
                 <label class="modal__close" for="modal-4.2"></label>
                 <h2 class="modal-title" style="color:black;">Add Review</h2>
 
-                <form action="/moviePage" method="post">
+                <form action="/moviePage" method="post"style="height:80%;">
                 <textarea name="Text" id="input" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 100%;"></textarea>
                 <button type="button" onclick="copyText();" style="cursor: pointer; font-size: 24px;">Save Review</button>
                 </form>
