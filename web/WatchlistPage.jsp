@@ -1,3 +1,6 @@
+<%@ page import="appLayer.watchList" %>
+<%@ page import="webapp.models.movieModel" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -146,58 +149,78 @@
 <hr>
 <h1 style="text-align: center; font-size: 64px; color: white; font-family: Helvetica;">My WatchList</h1>
 <hr>
+
     <p style="color: white; font-size: 24px;">Instructions: To add movies to your watchlist, click on the "Search Movies" tab located on the Top Menu. Then, search for a movie you would like to add,
     then click "Add Movie to Watchlist".
     </p>
     <!-- TODO ADD IN A GENERIC FOR THIS !-->
+<%
+    watchList wl = new watchList();
+    ArrayList<movieModel> List = wl.getMovies();
+    int i = 0;
+    int max = List.size();
 
+    request.setAttribute("AllMovieList",List);
+%>
 <table>
     <tr style ="padding-top: 5em; padding-bottom: 5em; border: solid white 3px; border-radius: 5em; margin-left: 50px;">
         <td style = "width:50%">
-            <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTA0OTQwMTIxNzheQTJeQWpwZ15BbWU4MDQ1MzI3OTMy._V1_UX182_CR0,0,182,268_AL_.jpg">
+            <!--img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTA0OTQwMTIxNzheQTJeQWpwZ15BbWU4MDQ1MzI3OTMy._V1_UX182_CR0,0,182,268_AL_.jpg">!--->
+
+
         </td>
-        <td>
+        <%
+        while(i<max) {
+            %>
+        <td id="<%=i%>Tab" >
+        <!-- TODO add in cross ref to the movie posters !-->
+
+        <p><b style = "font-size:30px"> <%=  List.get(i).getTitle()%></b></p>
+        <p><b style = "font-size:20px">Plot Preview</b></p>
+        <p><%=  List.get(i).getDescription()%></p>
+        <!------------All Reviews Modal-------------------------------->
+        <label class="btn" for="modal-4.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Reviews</label>
+        <input class="modal-state" id="modal-4.1" type="checkbox" />
+        <div class="modal">
+            <label class="modal__bg" for="modal-4.1"></label>
+            <div class="modal__inner" style="text-align: center">
+                <label class="modal__close" for="modal-4.1"></label>
+                <h2 class="modal-title" style="color:black;">All Reviews</h2>
+                <input type="text" id="output4" style="width: 100%;">
+            </div>
+        </div>
+        <!-----------------todo ADD LINK TO GENERIC PAGE AND SEND IN SELCTED ID FROM OBJ --------------------------------------->
+        <!------------Write Review Modal TODO ADD LINK------------------------------->
+        <label class="btn" for="modal-4.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
+
+        <input class="modal-state" id="modal-4.2" type="checkbox" />
+        <div class="modal">
+            <label class="modal__bg" for="modal-4.2"></label>
+            <div class="modal__inner" style="text-align: center">
+                <label class="modal__close" for="modal-4.2"></label>
+                <h2 class="modal-title" style="color:black;">Add Review</h2>
+
+                <textarea name="Text" id="input4" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
+                <button type="button" onclick="copyText();" style="cursor: pointer; font-size: 24px;">Save Review</button>
+
+                <br/>
+            </div>
+        </div>
+        </td>
+        <%
+                i++;
+        }
+        %>
+     <!--   <td>
             <p><b style = "font-size:30px">Geostorm</b></p>
             <hr align = center width = 47%>
             <p><b style = "font-size:20px">Release Date: October 20, 2017</b></p>
             <p><b style = "font-size:20px">Plot Preview</b></p>
             <p>An experimental weather regulating system called Dutch Boy has been weaponized to take out countries by creating geostorms.</p>
 
-            <!------------All Reviews Modal------------------------------->
-            <label class="btn" for="modal-1.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Reviews</label>
-            <input class="modal-state" id="modal-1.1" type="checkbox" />
-            <div class="modal">
-                <label class="modal__bg" for="modal-1.1"></label>
-                <div class="modal__inner" style="text-align: center">
-                    <label class="modal__close" for="modal-1.1"></label>
-                    <h2 class="modal-title" style="color:black;">All Reviews</h2>
-                    <input type="text" id="output1" style="width: 100%;">
-                </div>
-            </div>
+                  <!-------------------------------------------------------->
 
-            <!-------------------------------------------------------->
-
-            <!------------Write Review Modal-------------------------------->
-            <label class="btn" for="modal-1.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
-
-            <input class="modal-state" id="modal-1.2" type="checkbox" />
-            <div class="modal">
-                <label class="modal__bg" for="modal-1.2"></label>
-
-                <div class="modal__inner" style="text-align: center">
-                    <label class="modal__close" for="modal-1.2"></label>
-                <h2 class="modal-title" style="color:black;">Add Review</h2>
-
-                    <textarea name="Text" id="input1"cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
-                    <button type="button" onclick="copyText()" style="cursor: pointer; font-size: 24px;">Save Review</button>
-
-                </div>
-            </div>
-
-
-            <!-------------------------------------------------------->
-
-        </td>
+        <!--/td1 !
     </tr>
 <tr>
     <td>
@@ -215,134 +238,49 @@
             <p><b style = "font-size:20px">Plot Preview</b></p>
             <p>Having taken her first steps into a larger world in Star Wars: The Force Awakens (2015), Rey continues her epic journey with Finn, Poe, and Luke Skywalker in the next chapter of the saga.</p>
 
-            <!------------All Reviews Modal-------------------------------->
-            <label class="btn" for="modal-2.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Reviews</label>
-            <input class="modal-state" id="modal-2.1" type="checkbox" />
-            <div class="modal">
-                <label class="modal__bg" for="modal-2.1"></label>
-                <div class="modal__inner" style="text-align: center">
-                    <label class="modal__close" for="modal-2.1"></label>
-                    <h2 class="modal-title" style="color:black;">All Reviews</h2>
-                    <input type="text" id="output2" style="width: 100%;">
-                </div>
-            </div>
-            <!-------------------------------------------------------->
 
-            <!------------Write Review Modal-------------------------------->
-            <label class="btn" for="modal-2.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
+     </tr>
+     <tr>
+         <td>
+             <br />
+         </td>
+     </tr>
+     <tr style = "padding-top: 5em; padding-bottom: 5em; border: solid white 3px; border-radius: 5em; margin-left: 50px;">
+         <td style = "width: 50%;">
+             <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjMyNDkzMzI1OF5BMl5BanBnXkFtZTgwODcxODg5MjI@._V1_UX182_CR0,0,182,268_AL_.jpg">
+         </td>
+         <td>
+             <p><b style = "font-size:30px">Thor: Ragnarok</b></p>
+             <hr align = center width = 47%>
+             <p><b style = "font-size:20px">Release Date: November 3, 2017</b></p>
+             <p><b style = "font-size:20px">Plot Preview</b></p>
+             <p>In Marvel Studios' Thor: Ragnarok, Thor is imprisoned on the other side of the universe without his mighty hammer and finds himself in a race against time to get back to Asgard to stop Ragnarok-the destruction of his homeworld and the end of Asgardian civilization-at the hands of an all-powerful new threat, the ruthless Hela. But first he must survive a deadly gladiatorial contest that pits him against his former ally and fellow Avenger-the Incredible Hulk!</p>
 
-            <input class="modal-state" id="modal-2.2" type="checkbox" />
-            <div class="modal">
-                <label class="modal__bg" for="modal-2.2"></label>
-                <div class="modal__inner" style="text-align: center">
-                    <label class="modal__close" for="modal-2.2"></label>
-                    <h2 class="modal-title" style="color:black;">Add Review</h2>
 
-                    <textarea name="Text" id="input2" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
-                    <button type="button" onclick="copyText()" style="cursor: pointer; font-size: 24px;">Save Review</button>
+          <!-------------------------------------------------------->
+        <!---       </td>
 
-                </div>
-            </div>
-            <!-------------------------------------------------------->
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <br />
-        </td>
-    </tr>
-    <tr style = "padding-top: 5em; padding-bottom: 5em; border: solid white 3px; border-radius: 5em; margin-left: 50px;">
-        <td style = "width: 50%;">
-            <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjMyNDkzMzI1OF5BMl5BanBnXkFtZTgwODcxODg5MjI@._V1_UX182_CR0,0,182,268_AL_.jpg">
-        </td>
-        <td>
-            <p><b style = "font-size:30px">Thor: Ragnarok</b></p>
-            <hr align = center width = 47%>
-            <p><b style = "font-size:20px">Release Date: November 3, 2017</b></p>
-            <p><b style = "font-size:20px">Plot Preview</b></p>
-            <p>In Marvel Studios' Thor: Ragnarok, Thor is imprisoned on the other side of the universe without his mighty hammer and finds himself in a race against time to get back to Asgard to stop Ragnarok-the destruction of his homeworld and the end of Asgardian civilization-at the hands of an all-powerful new threat, the ruthless Hela. But first he must survive a deadly gladiatorial contest that pits him against his former ally and fellow Avenger-the Incredible Hulk!</p>
+           </tr>
+           <tr>
+               <td>
+                   <br />
+               </td>
+           </tr>
+           <tr style ="padding-top: 5em; padding-bottom: 5em; border: solid white 3px; border-radius: 5em; margin-left: 50px;">
+               <td style ="width:50%;">
+                   <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BNGFmM2NmYjYtMjAwNy00ZDkzLWI3ZWMtOGZhOTRhYzQwMTA0XkEyXkFqcGdeQXVyNzU2MzMyNTI@._V1_UX182_CR0,0,182,268_AL_.jpg">
+               </td>
+               <td>
+                   <p><b style = "font-size:30px">Murder on the Orient Express</b></p>
+                   <hr align = center width = 47%>
+                   <p><b style = "font-size:20px">Release Date: November 10, 2017</b></p>
+                   <p><b style = "font-size:20px">Plot Preview</b></p>
+                   <p>What starts out as a lavish train ride through Europe quickly unfolds into one of the most stylish, suspenseful and thrilling mysteries ever told. From the novel by best selling author Agatha Christie, "Murder on the Orient Express" tells the tale of thirteen strangers stranded on a train, where everyone's a suspect. One man must race against time to solve the puzzle before the murderer strikes again.</p>
 
-            <!------------All Reviews Modal-------------------------------->
-            <label class="btn" for="modal-3.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Reviews</label>
-            <input class="modal-state" id="modal-3.1" type="checkbox" />
-            <div class="modal">
-                <label class="modal__bg" for="modal-3.1"></label>
-                <div class="modal__inner" style="text-align: center">
-                    <label class="modal__close" for="modal-3.1"></label>
-                    <h2 class="modal-title" style="color:black;">All Reviews</h2>
-                    <input type="text" id="output3" style="width: 100%;">
-                </div>
-            </div>
-
-            <!-------------------------------------------------------->
-
-            <!------------Write Review Modal-------------------------------->
-            <label class="btn" for="modal-3.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
-
-            <input class="modal-state" id="modal-3.2" type="checkbox" />
-            <div class="modal">
-                <label class="modal__bg" for="modal-3.2"></label>
-                <div class="modal__inner" style="text-align: center">
-                    <label class="modal__close" for="modal-3.2"></label>
-                    <h2 class="modal-title" style="color:black;">Add Review</h2>
-
-                    <textarea name="Text" id="input3" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
-                    <button type="button" onclick="copyText();" style="cursor: pointer; font-size: 24px;">Save Review</button>
-
-                </div>
-            </div>
-
-            <!-------------------------------------------------------->
-        </td>
-
-    </tr>
-    <tr>
-        <td>
-            <br />
-        </td>
-    </tr>
-    <tr style ="padding-top: 5em; padding-bottom: 5em; border: solid white 3px; border-radius: 5em; margin-left: 50px;">
-        <td style ="width:50%;">
-            <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BNGFmM2NmYjYtMjAwNy00ZDkzLWI3ZWMtOGZhOTRhYzQwMTA0XkEyXkFqcGdeQXVyNzU2MzMyNTI@._V1_UX182_CR0,0,182,268_AL_.jpg">
-        </td>
-        <td>
-            <p><b style = "font-size:30px">Murder on the Orient Express</b></p>
-            <hr align = center width = 47%>
-            <p><b style = "font-size:20px">Release Date: November 10, 2017</b></p>
-            <p><b style = "font-size:20px">Plot Preview</b></p>
-            <p>What starts out as a lavish train ride through Europe quickly unfolds into one of the most stylish, suspenseful and thrilling mysteries ever told. From the novel by best selling author Agatha Christie, "Murder on the Orient Express" tells the tale of thirteen strangers stranded on a train, where everyone's a suspect. One man must race against time to solve the puzzle before the murderer strikes again.</p>
-
-            <!------------All Reviews Modal-------------------------------->
-            <label class="btn" for="modal-4.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Reviews</label>
-            <input class="modal-state" id="modal-4.1" type="checkbox" />
-            <div class="modal">
-                <label class="modal__bg" for="modal-4.1"></label>
-                <div class="modal__inner" style="text-align: center">
-                    <label class="modal__close" for="modal-4.1"></label>
-                    <h2 class="modal-title" style="color:black;">All Reviews</h2>
-                    <input type="text" id="output4" style="width: 100%;">
-                </div>
-            </div>
-            <!-------------------------------------------------------->
-
-            <!------------Write Review Modal------------------------------->
-            <label class="btn" for="modal-4.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
-
-            <input class="modal-state" id="modal-4.2" type="checkbox" />
-            <div class="modal">
-                <label class="modal__bg" for="modal-4.2"></label>
-                <div class="modal__inner" style="text-align: center">
-                    <label class="modal__close" for="modal-4.2"></label>
-                    <h2 class="modal-title" style="color:black;">Add Review</h2>
-
-                    <textarea name="Text" id="input4" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
-                    <button type="button" onclick="copyText();" style="cursor: pointer; font-size: 24px;">Save Review</button>
 
                 </div>
             </div>
             <!-------------------------------------------------------->
-        </td>
-    </tr>
 </table>
 </body>
 </html>

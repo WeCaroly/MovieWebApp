@@ -222,13 +222,13 @@ public class DBuser {
             stmt = con.createStatement();
 
 
-            sql = "SELECT * FROM user";
+            sql = "SELECT * FROM movie";
             ResultSet rs = stmt.executeQuery(sql);
             //String sql2 = "SELECT * FROM moviecommt WHERE idmovie = "+idmovie;
             //ResultSet rs2 = stmt.executeQuery(sql2);
             while (rs.next()){
                 movieModel movie = new movieModel();
-                movie.setComment(rs.getString("comments"));
+                movie.setComment(rs.getString("comment"));
                 movie.setDescription(rs.getString("description"));
                 movie.setIdmovie(rs.getInt("idmovie"));
                 movie.setRating(rs.getString("rating"));
@@ -679,7 +679,7 @@ public class DBuser {
             System.out.print("creating statement.... ");
             stmt = con.createStatement();
 
-            sql = "INSERT INTO moviecomment ('idmovie', 'iduser', 'rating', 'comment') " +
+            sql = "INSERT INTO moviecomment (idmovie', iduser, rating, comment) " +
                     "VALUES (\'"+idmovie+"\', \'"+iduser+"\', \'"+rating+"\', \'"+comment+"\');";
             int rs = stmt.executeUpdate(sql);
 

@@ -41,6 +41,12 @@ public class register extends HttpServlet{
                 && newUser.getEname()!= null && newUser.getFname()!=null && newUser.getLname()!=null
                 ){
             notNull = true;
+            newUser.setUname("test");
+            newUser.setPass("test");
+            newUser.setFname("test");
+            newUser.setLname("test");
+            newUser.setEname("test@gm");
+
         }
 
         if(user.validEmail(newUser.getEname()) && notNull){
@@ -50,7 +56,7 @@ public class register extends HttpServlet{
             request.setAttribute("userID", newUser.getId());
             request.getRequestDispatcher("/WatchlistPage.jsp").forward(request, response);
         }else{
-            request.setAttribute("errorMessage","Invalid Log in information. Try again.");
+            request.setAttribute("errorMessage","Invalid information. Try again.");
             request.getRequestDispatcher("/registrationPage.jsp").forward(request,response);
         }
 
