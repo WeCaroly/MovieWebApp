@@ -252,7 +252,7 @@ public class DBuser {
                 e.printStackTrace();
             }
         }
-        System.out.print("closed the DB!");
+        System.out.print("closed the DB!\n");
         return allMovieList;
     }
 
@@ -321,131 +321,6 @@ public class DBuser {
         }
         System.out.print("closed the DB!");
         return myMovies;
-    }
-
-    /**
-     * get the friends by the users id
-     * @param iduser the user's is
-     * @return userModel of all the friends
-     **/
-    public ArrayList<userModel> getFriends(int iduser) {
-        Connection con = null;
-        Statement stmt = null;
-        String sql;
-        ArrayList<userModel> friendInfo = new ArrayList<>();
-        //step 2 register JDBC driver
-        try {
-            Class.forName(JDBC_DRIVER);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try{//step 3 open connection
-
-            System.out.print("Connecting to db....");
-            con = DriverManager.getConnection(DB_URL,USER,PASS);
-
-            //step 4
-            System.out.print("creating statement.... ");
-            stmt = con.createStatement();
-
-            ArrayList<userModel> allUsers = getAllUsers();
-
-            sql = "SELECT * FROM friendlist WHERE iduser = "+iduser+";";
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()){
-                friendListModel newfriend = new friendListModel();
-                newfriend.setIdfriend(rs.getInt("idfriend"));
-                newfriend.setIduser(rs.getInt("iduser"));
-                int i = 0;
-                while (allUsers.size() > i) {
-                    if (allUsers.get(i).getId() == newfriend.getIduser()){
-                        friendInfo.add(allUsers.get(i));
-                        break;
-                    }
-                    i++;
-                }
-            }
-            rs.close();
-            stmt.close();
-            con.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            //use to close
-            try{
-                if(stmt!=null){
-                    con.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.print("closed the DB!");
-        return friendInfo;
-    }
-    /**
-     * Recomend List Call for the user
-     * @param iduser is the is for the user who is logged in
-     * @return returns all the users rec from their friends
-     * **/
-    public ArrayList<movieModel> getRec(int iduser){
-        Connection con = null;
-        Statement stmt = null;
-        String sql;
-        ArrayList<movieModel> allMovies = new ArrayList<>();
-        ArrayList<movieModel> recMovies = new ArrayList<>();
-        //step 2 register JDBC driver
-        try {
-            Class.forName(JDBC_DRIVER);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {//step 3 open connection
-
-            System.out.print("Connecting to db....");
-            con = DriverManager.getConnection(DB_URL, USER, PASS);
-
-            //step 4
-            System.out.print("creating statement.... ");
-            stmt = con.createStatement();
-
-            allMovies = getMovies();
-
-            sql = "SELECT * FROM recomendlist WHERE iduser = "+ iduser +";";
-            ResultSet rs = stmt.executeQuery(sql);
-
-            while(rs.next()){
-                recomendListModel recList = new recomendListModel();
-                recList.setIduser(rs.getInt("iduser"));
-                recList.setIdmovie(rs.getInt("idmovie"));
-                recList.setIdfreind(rs.getInt("idfriend"));
-                int i = 0;
-                while (allMovies.size() > i){
-                    if (recList.getIdmovie() == allMovies.get(i).getIdmovie()) {
-                        recMovies.add(allMovies.get(i));
-                        break;
-                    }
-                    i++;
-                }
-            }
-
-            stmt.close();
-            con.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            //use to close
-            try {
-                if (stmt != null) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return recMovies;
     }
 
     /**
@@ -538,7 +413,7 @@ public class DBuser {
             System.out.print("creating statement.... ");
             stmt = con.createStatement();
 
-            sql = "INSERT INTO movie ('title', 'description') "+
+            sql = "INSERT INTO movie (title, description) "+
              "VALUES (\'"+movie.getTitle()+"\', \'"+movie.getDescription()+"\')";
             int rs = stmt.executeUpdate(sql);
             //rs.close();
@@ -561,56 +436,11 @@ public class DBuser {
     }
 
     /**
-     * Adds friend to DB
-     * @param idfriend
-     * @param iduser
-     * */
-    public void addFriend(int idfriend, int iduser) {
-        Connection con = null;
-        Statement stmt = null;
-        String sql;
-        //step 2 register JDBC driver
-        try {
-            Class.forName(JDBC_DRIVER);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {//step 3 open connection
-
-            System.out.print("Connecting to db....");
-            con = DriverManager.getConnection(DB_URL, USER, PASS);
-
-            //step 4
-            System.out.print("creating statement.... ");
-            stmt = con.createStatement();
-
-            sql = "INSERT INTO friendlist ('idfriend', 'iduser') VALUES (\'" + idfriend + "\', \'" + iduser + "\');";
-            int rs = stmt.executeUpdate(sql);
-           // rs.close();
-            stmt.close();
-            con.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            //use to close
-            try {
-                if (stmt != null) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    /**
-     * Add recomendation to friend
+     * Add My Movies
      * @param idmovie
-     * @param idfriend
      * @param iduser
      * */
-    public void addRec(int idmovie, int idfriend, int iduser){
+    public void addToMyMovies(int idmovie, int iduser){
         Connection con = null;
         Statement stmt = null;
         String sql;
@@ -630,10 +460,9 @@ public class DBuser {
             System.out.print("creating statement.... ");
             stmt = con.createStatement();
 
-            sql = "INSERT INTO recomendlist ('idfriend', 'iduser', 'idmovie') VALUES (\'"+idfriend+"\', \'"+iduser+"\', '"+idmovie+"\');";
+            sql = "INSERT INTO movieList (idmovie, iduser) VALUES (\'"+idmovie+"\', '"+iduser+"\');";
             int rs = stmt.executeUpdate(sql);
 
-            //rs.close();
             stmt.close();
             con.close();
 
@@ -679,7 +508,7 @@ public class DBuser {
             System.out.print("creating statement.... ");
             stmt = con.createStatement();
 
-            sql = "INSERT INTO moviecomment (idmovie', iduser, rating, comment) " +
+            sql = "INSERT INTO moviecomment (idmovie, iduser, rating, comment) " +
                     "VALUES (\'"+idmovie+"\', \'"+iduser+"\', \'"+rating+"\', \'"+comment+"\');";
             int rs = stmt.executeUpdate(sql);
 
