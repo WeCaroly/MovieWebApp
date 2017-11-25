@@ -200,9 +200,10 @@
                 <label class="modal__close" for="modal-4.2"></label>
                 <h2 class="modal-title" style="color:black;">Add Review</h2>
 
+                <form action="/moviePage" method="post">
                 <textarea name="Text" id="input4" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
                 <button type="button" onclick="copyText();" style="cursor: pointer; font-size: 24px;">Save Review</button>
-
+                </form>
                 <br/>
             </div>
         </div>
