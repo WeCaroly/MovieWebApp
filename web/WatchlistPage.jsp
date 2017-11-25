@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script>
+        function copyText(){
+            if("input1")
+                document.getElementById("output1").value=document.getElementById("input1").value;
+            if("input2")
+                document.getElementById("output2").value=document.getElementById("input2").value;
+            if("input3")
+                document.getElementById("output3").value=document.getElementById("input3").value;
+            if("input4")
+                document.getElementById("output3").value=document.getElementById("input4").value;
+         }
+    </script>
 
     <style>
         .btn{
@@ -159,6 +171,7 @@
                 <div class="modal__inner" style="text-align: center">
                     <label class="modal__close" for="modal-1.1"></label>
                     <h2 class="modal-title" style="color:black;">All Reviews</h2>
+                    <input type="text" id="output1" style="width: 100%;">
                 </div>
             </div>
 
@@ -175,11 +188,13 @@
                     <label class="modal__close" for="modal-1.2"></label>
                 <h2 class="modal-title" style="color:black;">Add Review</h2>
 
-                    <textarea name="Text" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
-                    <button type="button" style="cursor: pointer; font-size: 24px;">Save Review</button>
+                    <textarea name="Text" id="input1"cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
+                    <button type="button" onclick="copyText()" style="cursor: pointer; font-size: 24px;">Save Review</button>
 
                 </div>
             </div>
+
+
             <!-------------------------------------------------------->
 
         </td>
@@ -208,6 +223,7 @@
                 <div class="modal__inner" style="text-align: center">
                     <label class="modal__close" for="modal-2.1"></label>
                     <h2 class="modal-title" style="color:black;">All Reviews</h2>
+                    <input type="text" id="output2" style="width: 100%;">
                 </div>
             </div>
             <!-------------------------------------------------------->
@@ -222,8 +238,8 @@
                     <label class="modal__close" for="modal-2.2"></label>
                     <h2 class="modal-title" style="color:black;">Add Review</h2>
 
-                    <textarea name="Text" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
-                    <button type="button" style="cursor: pointer; font-size: 24px;">Save Review</button>
+                    <textarea name="Text" id="input2" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
+                    <button type="button" onclick="copyText()" style="cursor: pointer; font-size: 24px;">Save Review</button>
 
                 </div>
             </div>
@@ -254,8 +270,10 @@
                 <div class="modal__inner" style="text-align: center">
                     <label class="modal__close" for="modal-3.1"></label>
                     <h2 class="modal-title" style="color:black;">All Reviews</h2>
+                    <input type="text" id="output3" style="width: 100%;">
                 </div>
             </div>
+
             <!-------------------------------------------------------->
 
             <!------------Write Review Modal-------------------------------->
@@ -268,11 +286,12 @@
                     <label class="modal__close" for="modal-3.2"></label>
                     <h2 class="modal-title" style="color:black;">Add Review</h2>
 
-                    <textarea name="Text" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
-                    <button type="button" style="cursor: pointer; font-size: 24px;">Save Review</button>
+                    <textarea name="Text" id="input3" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
+                    <button type="button" onclick="copyText();" style="cursor: pointer; font-size: 24px;">Save Review</button>
 
                 </div>
             </div>
+
             <!-------------------------------------------------------->
         </td>
 
@@ -301,6 +320,7 @@
                 <div class="modal__inner" style="text-align: center">
                     <label class="modal__close" for="modal-4.1"></label>
                     <h2 class="modal-title" style="color:black;">All Reviews</h2>
+                    <input type="text" id="output4" style="width: 100%;">
                 </div>
             </div>
             <!-------------------------------------------------------->
@@ -315,8 +335,8 @@
                     <label class="modal__close" for="modal-4.2"></label>
                     <h2 class="modal-title" style="color:black;">Add Review</h2>
 
-                    <textarea name="Text" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
-                    <button type="button" style="cursor: pointer; font-size: 24px;">Save Review</button>
+                    <textarea name="Text" id="input4" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
+                    <button type="button" onclick="copyText();" style="cursor: pointer; font-size: 24px;">Save Review</button>
 
                 </div>
             </div>
