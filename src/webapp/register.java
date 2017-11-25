@@ -18,7 +18,6 @@ public class register extends HttpServlet{
     User user = new User();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //dispatch
-        Boolean notNull = false;
         request.setAttribute("uname", request.getParameter("uname"));
         request.setAttribute("pass", request.getParameter("pass"));
         request.setAttribute("fname", request.getParameter("fname"));
@@ -37,19 +36,8 @@ public class register extends HttpServlet{
         newUser.setPass(request.getParameter("pass"));
         newUser.setReciveEmail(Boolean.parseBoolean(request.getParameter("reciveEmailEmail")));
 
-        if(newUser.getAge()>0 && newUser.getUname() != null && newUser.getPAss()!=null
-                && newUser.getEname()!= null && newUser.getFname()!=null && newUser.getLname()!=null
-                ){
-            notNull = true;
-            newUser.setUname("test");
-            newUser.setPass("test");
-            newUser.setFname("test");
-            newUser.setLname("test");
-            newUser.setEname("test@gm");
 
-        }
-
-        if(user.validEmail(newUser.getEname()) && notNull){
+        if(user.validEmail(newUser.getEname())){
             //call to user that is connected to DB
             user.register(newUser);
             newUser.setId(user.getAllUser().size()+1);
