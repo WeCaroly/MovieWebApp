@@ -37,11 +37,11 @@ public class DBuser {
             }
             try{//step 3 open connection
 
-            System.out.print("Connecting to db....");
+            System.out.print("Connecting to db....\n");
             con = DriverManager.getConnection(DB_URL,USER,PASS);
 
             //step 4
-            System.out.print("creating statement.... ");
+            System.out.print("creating statement.... \n");
             stmt = con.createStatement();
 
             sql = "SELECT * FROM user WHERE uname = \"" + sUsername
@@ -71,7 +71,7 @@ public class DBuser {
                 e.printStackTrace();
             }
         }
-        System.out.print("closed the DB!");
+        System.out.print("closed the DB!\n");
         return isValid;
     }
     /**
@@ -82,7 +82,7 @@ public class DBuser {
         Statement stmt = null;
         String sql;
         userModel newUser;
-        ArrayList<userModel> UserList = null;
+        ArrayList<userModel> UserList = new ArrayList<>();
         //step 2 register JDBC driver
         try {
             Class.forName(JDBC_DRIVER);
@@ -91,11 +91,11 @@ public class DBuser {
         }
         try{//step 3 open connection
 
-            System.out.print("Connecting to db....");
+            System.out.print("Connecting to db....\n");
             con = DriverManager.getConnection(DB_URL,USER,PASS);
 
             //step 4
-            System.out.print("creating statement.... ");
+            System.out.print("creating statement.... \n");
             stmt = con.createStatement();
 
             sql = "SELECT * FROM user";
@@ -105,7 +105,7 @@ public class DBuser {
 
             while(rs.next()){
                 newUser = new userModel();
-                int id = rs.getInt("id");
+                int id = rs.getInt("iduser");
                 String fname = rs.getString("fname");
                 String lname = rs.getString("lname");
                 String uname = rs.getString("uname");
@@ -163,23 +163,22 @@ public class DBuser {
        }
        try{//step 3 open connection
 
-           System.out.print("Connecting to db....");
+           System.out.print("Connecting to db....\n");
            con = DriverManager.getConnection(DB_URL,USER,PASS);
 
            //step 4
-           System.out.print("creating statement.... ");
+           System.out.print("creating statement.... \n");
            stmt = con.createStatement();
 
 
            sql = "INSERT INTO user " +
-                   "(`fname`, `lname`, `uname`, `age`, `ename`, `reciveEmail`, `password`) " +
-                   "VALUES (\'"+newUser.getFname()+"\', \'"+newUser.getFname()+"\', \'" +
-                   newUser.getUname()+"\', \'"+newUser.getAge()+"\', \'"+newUser.getEname()+"\', \'"
-                   +newUser.isReciveEmail()+"\', \'"+newUser.getPAss()+"\')";
-           ResultSet rs = stmt.executeQuery(sql);
+                   "(fname, lname, ename, age, password, uname)" +
+                   "VALUES (\'"+newUser.getFname()+"\', \'"+newUser.getLname()+"\', \'" +
+                   newUser.getEname()+"\', \'"+newUser.getAge()+"\', \'"+newUser.getPAss()+"\', \'"+newUser.getUname()+"\')";
 
+           stmt.executeUpdate(sql);
 
-            rs.close();
+           // rs.close();
             stmt.close();
             con.close();
 
@@ -195,7 +194,7 @@ public class DBuser {
                 e.printStackTrace();
             }
         }
-        System.out.print("closed the DB!");
+        System.out.print("closed the DB!\n");
     }
 
     /**
@@ -206,7 +205,7 @@ public class DBuser {
         Connection con = null;
         Statement stmt = null;
         String sql;
-        ArrayList<movieModel> allMovieList = null;
+        ArrayList<movieModel> allMovieList = new ArrayList<>();
         //step 2 register JDBC driver
         try {
             Class.forName(JDBC_DRIVER);
@@ -266,7 +265,7 @@ public class DBuser {
         Connection con = null;
         Statement stmt = null;
         String sql;
-        ArrayList<movieModel> myMovies = null;
+        ArrayList<movieModel> myMovies = new ArrayList<>();
         //step 2 register JDBC driver
         try {
             Class.forName(JDBC_DRIVER);
@@ -333,9 +332,7 @@ public class DBuser {
         Connection con = null;
         Statement stmt = null;
         String sql;
-        userModel newUser;
-        ArrayList<friendListModel> friendList = null;
-        ArrayList<userModel> friendInfo = null;
+        ArrayList<userModel> friendInfo = new ArrayList<>();
         //step 2 register JDBC driver
         try {
             Class.forName(JDBC_DRIVER);
@@ -396,9 +393,8 @@ public class DBuser {
         Connection con = null;
         Statement stmt = null;
         String sql;
-        ArrayList<movieModel> allMovies = null;
-        ArrayList<movieModel> recMovies = null;
-        ArrayList<recomendListModel> RecList = null;
+        ArrayList<movieModel> allMovies = new ArrayList<>();
+        ArrayList<movieModel> recMovies = new ArrayList<>();
         //step 2 register JDBC driver
         try {
             Class.forName(JDBC_DRIVER);
@@ -481,7 +477,7 @@ public class DBuser {
             ResultSet rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
-                int id = rs.getInt("id");
+                int id = rs.getInt("iduser");
                 String fname = rs.getString("fname");
                 String lname = rs.getString("lname");
                 String uname = rs.getString("uname");
@@ -527,8 +523,6 @@ public class DBuser {
         Connection con = null;
         Statement stmt = null;
         String sql;
-        userModel newUser;
-        ArrayList<userModel> UserList = null;
         //step 2 register JDBC driver
         try {
             Class.forName(JDBC_DRIVER);
@@ -546,8 +540,8 @@ public class DBuser {
 
             sql = "INSERT INTO movie ('title', 'description') "+
              "VALUES (\'"+movie.getTitle()+"\', \'"+movie.getDescription()+"\')";
-            ResultSet rs = stmt.executeQuery(sql);
-            rs.close();
+            int rs = stmt.executeUpdate(sql);
+            //rs.close();
             stmt.close();
             con.close();
 
@@ -575,8 +569,6 @@ public class DBuser {
         Connection con = null;
         Statement stmt = null;
         String sql;
-        userModel newUser;
-        ArrayList<userModel> UserList = null;
         //step 2 register JDBC driver
         try {
             Class.forName(JDBC_DRIVER);
@@ -593,8 +585,8 @@ public class DBuser {
             stmt = con.createStatement();
 
             sql = "INSERT INTO friendlist ('idfriend', 'iduser') VALUES (\'" + idfriend + "\', \'" + iduser + "\');";
-            ResultSet rs = stmt.executeQuery(sql);
-            rs.close();
+            int rs = stmt.executeUpdate(sql);
+           // rs.close();
             stmt.close();
             con.close();
 
@@ -639,9 +631,9 @@ public class DBuser {
             stmt = con.createStatement();
 
             sql = "INSERT INTO recomendlist ('idfriend', 'iduser', 'idmovie') VALUES (\'"+idfriend+"\', \'"+iduser+"\', '"+idmovie+"\');";
-            ResultSet rs = stmt.executeQuery(sql);
+            int rs = stmt.executeUpdate(sql);
 
-            rs.close();
+            //rs.close();
             stmt.close();
             con.close();
 
@@ -687,11 +679,11 @@ public class DBuser {
             System.out.print("creating statement.... ");
             stmt = con.createStatement();
 
-            sql = "INSERT INTO moviecomment ('idmovie', 'rating', 'comment', 'iduser') " +
-                    "VALUES (\'"+idmovie+"\', \'"+rating+"\', \'"+ comment+"\', \'"+iduser+"\');";
-            ResultSet rs = stmt.executeQuery(sql);
+            sql = "INSERT INTO moviecomment ('idmovie', 'iduser', 'rating', 'comment') " +
+                    "VALUES (\'"+idmovie+"\', \'"+iduser+"\', \'"+rating+"\', \'"+comment+"\');";
+            int rs = stmt.executeUpdate(sql);
 
-            rs.close();
+            //rs.close();
             stmt.close();
             con.close();
 

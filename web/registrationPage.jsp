@@ -18,6 +18,7 @@
 </head>
 <body>
 
+<p style="color: red">${errorMessage}</p>
 <div class = "Menu" style="display: block; background-color: black; padding-bottom: 80px;">
     <h1 style = "float: right; color: white; padding-top: 20px; margin: 0;">Fifth Brick Inc.</h1>
 </div>

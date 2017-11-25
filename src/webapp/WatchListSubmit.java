@@ -18,6 +18,7 @@ public class WatchListSubmit extends HttpServlet {
         out.print("Do post: \ntodo:"+ request.getParameter("todoBox"));
 
 
+
         //TODO call to the db to get the info
 
 //        ArrayList<movieModel> movieList = new ArrayList<movieModel>();

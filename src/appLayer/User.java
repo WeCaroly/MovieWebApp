@@ -36,7 +36,7 @@ public class User {
     public ArrayList<userModel> getFriends(int iduser){return db_User.getFriends(iduser);}
 
     public boolean validEmail(String email) {
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(email);
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
         return matcher.find();
     }
 }
