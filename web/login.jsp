@@ -38,7 +38,7 @@
         <h1 style="text-align: center; font-size: 64px; color: white; font-family: Helvetica;">Log In</h1>
         <hr>
 		<form action="/login" method="post" style="font-size: 24px; color: white; padding-top: 20px;">
-    		User-name:&nbsp;<input type="text" name="loginname" style="width: 300px; height: 40px; border: solid white;"/>
+    		User-name:&nbsp;<input type="text" name="loginname"  value="${applicationScope.username}" style="width: 300px; height: 40px; border: solid white;"/>
     		<br><br>
    			 &nbsp;&nbsp;Password:&nbsp;<input type="text" name="password" style="width: 301px; height: 40px; border: solid white;"/>
    			 <br><br>
