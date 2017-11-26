@@ -7,9 +7,9 @@
 <html>
 <head>
     <script>
-        function copyText(){
-                document.getElementById("output").value=document.getElementById("input").value;
-         }
+        function copyText() {
+           // document.getElementById("output").value = TODO the values from the comment from the movie id;
+        }
     </script>
 
 </head>
@@ -68,7 +68,7 @@
                 <div class="modal__inner" style="text-align: center">
                     <label class="modal__close" for="modal-<%=x+1%>.1"></label>
                     <h2 class="modal-title" style="color:black;">All Reviews</h2>
-                    <input type="text" id="output" style="width: 100%;">
+                    <input type="text" id="output<%=x+1%>>" style="width: 100%;">
                 </div>
             </div>
             <label class="btn" for="modal-<%=x+1%>.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
@@ -81,7 +81,7 @@
                     <h2 class="modal-title" style="color:black;">Add Review</h2>
 
                     <form action="/moviePage" method="post">
-                        <textarea name="Text" id="input" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
+                        <textarea name="Text" id="input<%=x+1%>%" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
                         <button type="button" onclick="copyText();" style="cursor: pointer; font-size: 24px;">Save Review</button>
                     </form>
                     <br/>
