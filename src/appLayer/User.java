@@ -24,16 +24,10 @@ public class User {
     public int getID(){
         return id;
     }
+
     public ArrayList<userModel> getAllUser() {
         return db_User.getAllUsers();
     }
-
-    //public void setTodo(todo newItem){
-    //  System.out.println(newItem.getTodo() + " " + newItem.getUser());
-    //  db_User.setTodo(newItem);
-    // }
-
-    public ArrayList<userModel> getFriends(int iduser){return db_User.getFriends(iduser);}
 
     public boolean validEmail(String email) {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);

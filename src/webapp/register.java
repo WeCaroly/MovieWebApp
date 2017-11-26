@@ -1,7 +1,6 @@
 package webapp;
 
 import appLayer.User;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import webapp.models.userModel;
 
 import javax.servlet.ServletException;
@@ -47,16 +46,6 @@ public class register extends HttpServlet{
             request.setAttribute("errorMessage","Invalid information. Try again.");
             request.getRequestDispatcher("/registrationPage.jsp").forward(request,response);
         }
-
-//
-//        if(user.isValidUserCredentials(request.getParameter("loginname"),request.getParameter("password"))) {
-//            request.setAttribute("userID", user.getID());
-//            request.getRequestDispatcher("/WatchlistPage.jsp").forward(request, response);
-//        }else{
-//            request.setAttribute("errorMessage","Invalid Log in information. Try again.");
-//            request.getRequestDispatcher("/login.jsp").forward(request,response);
-//
-//        }
 
         //Obtain the session object, create a new session if doesn't exist
         HttpSession session = request.getSession(true);

@@ -19,8 +19,10 @@ public class login extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.print("Do post: \nlogin-name:"+ request.getParameter("loginname")+
                 " \nPassword:" + request.getParameter("password"));
-
-
+        //Obtain the session object, create a new session if doesn't exist
+        session = request.getSession();
+        //set a string session attribute
+        session.setAttribute("MySession", user.getID());
         //dispatch
         request.setAttribute("username", request.getParameter("loginname"));
         request.setAttribute("password", request.getParameter("password"));
@@ -33,11 +35,7 @@ public class login extends HttpServlet {
             request.getRequestDispatcher("/login.jsp").forward(request,response);
         }
 
-        //Obtain the session object, create a new session if doesn't exist
-        session = request.getSession(true);
 
-        //set a string session attribute
-        session.setAttribute("MySessionVariable", "MySessionAtrValue");
 
     }
 
