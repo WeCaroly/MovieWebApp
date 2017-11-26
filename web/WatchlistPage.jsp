@@ -106,6 +106,7 @@
                     <br/>
                 </div>
             </div>
+            <label class="btn" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Remove from Watchlist</label>
 
         </td>
         </tr>
