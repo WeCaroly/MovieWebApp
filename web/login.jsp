@@ -42,6 +42,7 @@
     		<br><br>
    			 &nbsp;&nbsp;Password:&nbsp;<input type="text" name="password" style="width: 301px; height: 40px; border: solid white;"/>
    			 <br><br>
+			<p style="color: red; font-size: 20px; text-align: center;">${errorMessage}</p>
     		<div style="text-align:center;">
         		<input type="submit" value="Submit" style="cursor: pointer; font-size: 24px;"/>
         		</div>
@@ -53,6 +54,5 @@
     	</form>
 </div>
 
-<p style="color: red">${errorMessage}</p>
 </body>
 </html>
