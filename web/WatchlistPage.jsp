@@ -39,14 +39,15 @@
     ArrayList<movieModel> MyList= null;
     watchList wl = new watchList();
     if(session.getAttribute("MyMovieList") == null) {
-        int userId = (Integer) request.getAttribute("userID");
+        int userId = (Integer) session.getAttribute("userID");
         MyList = wl.getMyMovies(userId);
         x = 0;
         maxNew = MyList.size();
         session.setAttribute("MyMovieList",MyList);
     }else{
         try {
-            MyList = (ArrayList<movieModel>) session.getAttribute("MyMovieList");
+            MyList = wl.getMyMovies((Integer) session.getAttribute("userID"));//(ArrayList<movieModel>) session.getAttribute("MyMovieList");
+            maxNew = MyList.size();
         }catch (Exception e){
             System.out.println("Error Code\n\n"+e+"\n\n");
         }

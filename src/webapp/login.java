@@ -32,6 +32,7 @@ public class login extends HttpServlet {
         if(user.isValidUserCredentials(request.getParameter("loginname"),request.getParameter("password"))) {
             DBuser db = new DBuser();
 
+            session.setAttribute("userID", user.getId(request.getParameter("loginname"),request.getParameter("password")));
             request.setAttribute("userID", user.getId(request.getParameter("loginname"),request.getParameter("password")));
             request.getRequestDispatcher("/WatchlistPage.jsp").forward(request, response);
         }else{
