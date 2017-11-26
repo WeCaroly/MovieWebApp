@@ -57,7 +57,8 @@
 
         <tr id="<%=x%>Tab" >
         <td style="border:solid white 3px;">
-            <p><b style = "font-size:30px"> <%=MyList.get(x).getTitle()%></b></p>
+            <p style="padding-top:20px;"><b style = "font-size:30px;"> <%=MyList.get(x).getTitle()%></b></p>
+            <hr style="width: 40%">
             <p><b style = "font-size:20px">Plot Preview:</b></p>
             <p><%=MyList.get(x).getDescription()%></p>
             <!------------Button-------------------------------->
