@@ -185,7 +185,7 @@
             <div class="modal__inner" style="text-align: center">
                 <label class="modal__close" for="modal-4.1"></label>
                 <h2 class="modal-title" style="color:black;">All Reviews</h2>
-                <input type="text" id="output" style="width: 100%;">
+                <input readonly type="text" id="output" style=" border: none; width: 100%;">
             </div>
         </div>
     &nbsp;&nbsp;&nbsp;
