@@ -284,7 +284,7 @@ public class DBuser {
             ArrayList<movieModel> allMovies = getMovies();
 
 
-            sql = "SELECT * FROM movielist where isuser ="+iduser+";";
+            sql = "SELECT * FROM movieList where iduser ="+iduser+";";
             System.out.println(sql);
 
             ResultSet rs = stmt.executeQuery(sql);
@@ -508,7 +508,7 @@ public class DBuser {
             System.out.print("creating statement.... ");
             stmt = con.createStatement();
 
-            sql = "INSERT INTO moviecomment (idmovie, iduser, rating, comment) " +
+            sql = "INSERT INTO movieComment (idmovie, iduser, rating, comment) " +
                     "VALUES (\'"+idmovie+"\', \'"+iduser+"\', \'"+rating+"\', \'"+comment+"\');";
             int rs = stmt.executeUpdate(sql);
 
@@ -530,6 +530,63 @@ public class DBuser {
         }
         System.out.print("closed the DB!");
 
+    }
+
+    public userModel findId (String user, String pass){
+        Connection con = null;
+        Statement stmt = null;
+        userModel userInfo = new userModel();
+        String sql;
+
+        //step 2 register JDBC driver
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try{//step 3 open connection
+            con = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            //step 4
+            stmt = con.createStatement();
+
+            sql = "SELECT * FROM user WHERE uname = \"" + user + "\" AND password = \"" + pass+ "\"" ;
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                int id = rs.getInt("iduser");
+                String fname = rs.getString("fname");
+                String lname = rs.getString("lname");
+                String uname = rs.getString("uname");
+                String ename = rs.getString("ename");
+                int age = rs.getInt("age");
+                String passw = rs.getString("password");
+
+                userInfo.setAge(age);
+                userInfo.setFname(fname);
+                userInfo.setEname(ename);
+                userInfo.setPass(passw);
+                userInfo.setUname(uname);
+                userInfo.setLname(lname);
+                userInfo.setId(id);
+            }
+            //rs.close();
+            stmt.close();
+            con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            //use to close
+            try{
+                if(stmt!=null){
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return userInfo;
     }
 
 }

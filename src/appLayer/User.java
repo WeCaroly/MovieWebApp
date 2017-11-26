@@ -21,8 +21,9 @@ public class User {
         db_User.registerUser(newUser);
     }
 
-    public int getID(){
-        return id;
+    public int getId(String sUserName,String sUserPsss){
+        userModel IDuser = db_User.findId( sUserName, sUserPsss);
+        return IDuser.getId();
     }
 
     public ArrayList<userModel> getAllUser() {
