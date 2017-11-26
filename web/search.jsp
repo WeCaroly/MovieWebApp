@@ -1,4 +1,6 @@
-<%--
+<%@ page import="appLayer.watchList" %>
+<%@ page import="webapp.models.movieModel" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: Jordan Fay
   Date: 11/20/2017
@@ -12,6 +14,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page language="java" session="true" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,73 +58,62 @@
 <div class = "search" style=" padding-top: 20px; padding-bottom: 20px; margin-left: 10px; margin-right: 10px;">
 <input type="text" name="search" placeholder="Search" style="width: 100%; height: 30px;">
 </div>
-    <table>
-        <tr style ="padding-top: 5em; padding-bottom: 5em; border: solid white 3px; border-radius: 5em; margin-left: 50px;">
-            <td style = "width:50%">
-                <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTA0OTQwMTIxNzheQTJeQWpwZ15BbWU4MDQ1MzI3OTMy._V1_UX182_CR0,0,182,268_AL_.jpg">
-            </td>
-            <td>
-                <p><b style = "font-size:30px">Geostorm</b></p>
-                <hr align = center width = 47%>
-                <p><b style = "font-size:20px">Release Date: October 20, 2017</b></p>
-                <p><b style = "font-size:20px">Plot Preview</b></p>
-                <p>An experimental weather regulating system called Dutch Boy has been weaponized to take out countries by creating geostorms.</p>
-                <input type="button" value="Add to Watchlist" style="color:black; background-color:white; font-size: 24px;">
-             </td>
-        </tr>
-        <tr>
-            <td>
-                <br />
-            </td>
-        </tr>
-        <tr style ="padding-top: 5em; padding-bottom: 5em; border: solid white 3px; border-radius: 5em; margin-left: 50px;">
-            <td style = "width: 50%;">
-                <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjQ1MzcxNjg4N15BMl5BanBnXkFtZTgwNzgwMjY4MzI@._V1_UX182_CR0,0,182,268_AL_.jpg">
-            </td>
-            <td>
-                <p><b style = "font-size:30px">Star Wars: The Last Jedi</b></p>
-                <hr align = center; width = 47%>
-                <p><b style = "font-size:20px">Release Date: December 15, 2017</b></p>
-                <p><b style = "font-size:20px">Plot Preview</b></p>
-                <p>Having taken her first steps into a larger world in Star Wars: The Force Awakens (2015), Rey continues her epic journey with Finn, Poe, and Luke Skywalker in the next chapter of the saga.</p>
-                <input type="button" value="Add to Watchlist" style="color:black; background-color:white; font-size: 24px;">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <br />
-            </td>
-        </tr>
-        <tr style = "padding-top: 5em; padding-bottom: 5em; border: solid white 3px; border-radius: 5em; margin-left: 50px;">
-            <td style = "width: 50%;">
-                <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjMyNDkzMzI1OF5BMl5BanBnXkFtZTgwODcxODg5MjI@._V1_UX182_CR0,0,182,268_AL_.jpg">
-            </td>
-            <td>
-                <p><b style = "font-size:30px">Thor: Ragnarok</b></p>
-                <hr align = center width = 47%>
-                <p><b style = "font-size:20px">Release Date: November 3, 2017</b></p>
-                <p><b style = "font-size:20px">Plot Preview</b></p>
-                <p>In Marvel Studios' Thor: Ragnarok, Thor is imprisoned on the other side of the universe without his mighty hammer and finds himself in a race against time to get back to Asgard to stop Ragnarok-the destruction of his homeworld and the end of Asgardian civilization-at the hands of an all-powerful new threat, the ruthless Hela. But first he must survive a deadly gladiatorial contest that pits him against his former ally and fellow Avenger-the Incredible Hulk!</p>
-            </td>
 
-        </tr>
-        <tr>
-            <td>
-                <br />
-            </td>
-        </tr>
-        <tr style ="padding-top: 5em; padding-bottom: 5em; border: solid white 3px; border-radius: 5em; margin-left: 50px;">
-            <td style ="width:50%;">
-                <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BNGFmM2NmYjYtMjAwNy00ZDkzLWI3ZWMtOGZhOTRhYzQwMTA0XkEyXkFqcGdeQXVyNzU2MzMyNTI@._V1_UX182_CR0,0,182,268_AL_.jpg">
-            </td>
-            <td>
-                <p><b style = "font-size:30px">Murder on the Orient Express</b></p>
-                <hr align = center width = 47%>
-                <p><b style = "font-size:20px">Release Date: November 10, 2017</b></p>
-                <p><b style = "font-size:20px">Plot Preview</b></p>
-                <p>What starts out as a lavish train ride through Europe quickly unfolds into one of the most stylish, suspenseful and thrilling mysteries ever told. From the novel by best selling author Agatha Christie, "Murder on the Orient Express" tells the tale of thirteen strangers stranded on a train, where everyone's a suspect. One man must race against time to solve the puzzle before the murderer strikes again.</p>
-            </td>
-        </tr>
-    </table>
+<%
+    if(session.getAttribute("MySession") == null){
+        response.sendRedirect("login.jsp");
+    }
+
+    watchList wl = new watchList();
+    ArrayList<movieModel> MyList = wl.getMovies();
+    int x = 0;
+    int maxNew = MyList.size();
+%>
+<table>
+    <td style ="padding-top: 5em; padding-bottom: 5em;  margin-left: 50px;">
+            <%
+        while(x<maxNew) {
+            %>
+
+    <td id="<%=x%>Tab" >
+        <p><b style = "font-size:30px"> <%=MyList.get(x).getTitle()%></b></p>
+        <p><b style = "font-size:20px">Plot Preview:</b></p>
+        <p><%=MyList.get(x).getDescription()%></p>
+        <!------------Button-------------------------------->
+        <label class="btn" for="modal-<%=x%>.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Reviews</label>
+        <input class="modal-state" id="modal-<%=x%>>.1" type="checkbox" />
+        <div class="modal">
+            <label class="modal__bg" for="modal-<%=x%>.1"></label>
+            <div class="modal__inner" style="text-align: center">
+                <label class="modal__close" for="modal-<%=x%>.1"></label>
+                <h2 class="modal-title" style="color:black;">All Reviews</h2>
+                <input type="text" id="output<%=x%>" style="width: 100%;">
+            </div>
+        </div>
+        <label class="btn" for="modal-<%=x%>.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
+        <!-- Button!-->
+        <input class="modal-state" id="modal-<%=x%>.2" type="checkbox" />
+        <div class="modal">
+            <label class="modal__bg" for="modal-<%=x%>.2"></label>
+            <div class="modal__inner" style="text-align: center">
+                <label class="modal__close" for="modal-<%=x%>.2"></label>
+                <h2 class="modal-title" style="color:black;">Add Review</h2>
+
+                <form action="/moviePage" method="post">
+                    <textarea name="Text" id="input<%=x%>" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
+                    <button type="button" onclick="copyText();" style="cursor: pointer; font-size: 24px;">Save Review</button>
+                </form>
+                <br/>
+            </div>
+        </div>
+    </td>
+    <br/>
+    <%
+            x++;
+        }
+    %>
+</table>
+
+
 </body>
 </html>
