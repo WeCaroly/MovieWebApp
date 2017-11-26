@@ -10,124 +10,6 @@
          }
     </script>
 
-    <style>
-        .btn{
-            background-color: white;
-            color: black;
-            font-family: Helvetica;
-            display: inline-block;
-                   }
-          .modal {
-            opacity: 0;
-            visibility: hidden;
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            text-align: left;
-            background: rgba(0,0,0, .9);
-            transition: opacity .25s ease;
-        }
-
-        .modal__bg {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            cursor: pointer;
-        }
-
-
-        .modal-state {
-            display: none;
-        }
-
-        .modal-state:checked + .modal {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-state:checked + .modal .modal__inner {
-            top: 0;
-        }
-
-        .modal__inner {
-            transition: top .25s ease;
-            position: absolute;
-            top: -20%;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            width: 50%;
-            margin: auto;
-            overflow: auto;
-            background: #fff;
-            border-radius: 5px;
-            padding: 1em 2em;
-            height: 50%;
-        }
-
-        .modal__close {
-            position: absolute;
-            right: 1em;
-            top: 1em;
-            width: 1.1em;
-            height: 1.1em;
-            cursor: pointer;
-        }
-
-        .modal__close:after,
-        .modal__close:before {
-            content: '';
-            position: absolute;
-            width: 2px;
-            height: 1.5em;
-            background: #ccc;
-            display: block;
-            transform: rotate(45deg);
-            left: 50%;
-            margin: -3px 0 0 -1px;
-            top: 0;
-        }
-
-        .modal__close:hover:after,
-        .modal__close:hover:before {
-            background: #aaa;
-        }
-
-        .modal__close:before {
-            transform: rotate(-45deg);
-        }
-
-        a {
-            padding: 10px;
-            padding-top: 20px;
-            padding-bottom: 20px;
-            width: 100%;
-            font-size: 32px;
-            color: white;
-            text-decoration: none;
-
-        }
-		p {
-			text-align: center;
-		}
-
-        img{
-            display:block;
-            margin: 0 auto;
-        }
-        table{
-            color: white;
-            text-align: center;
-            border-collapse: collapse;
-            width: 40%;
-            margin: 0 auto;
-
-        }
-    </style>
 </head>
 <body style="background-color: #2E2E2E; margin: 0;">
 
@@ -141,154 +23,67 @@
 
 
 <hr>
-<h1 style="text-align: center; font-size: 64px; color: white; font-family: Helvetica;">My WatchList</h1>
+<h1 style="text-align: center; font-size: 64px; color: white; font-family: Helvetica;">${username} WatchList</h1>
 <hr>
 
     <p style="color: white; font-size: 24px;">Instructions: To add movies to your watchlist, click on the "Search Movies" tab located on the Top Menu. Then, search for a movie you would like to add,
     then click "Add Movie to Watchlist".
     </p>
-    <!-- TODO ADD IN A GENERIC FOR THIS !-->
 <%
+    if(session.getAttribute("MySession") == null){
+       response.sendRedirect("login.jsp");
+    }
+
     watchList wl = new watchList();
-    ArrayList<movieModel> List = wl.getMovies();
-    int i = 0;
-    int max = List.size();
-
-    request.setAttribute("AllMovieList",List);
+    int userId = (Integer) request.getAttribute("userID");
+    ArrayList<movieModel> MyList = wl.getMyMovies(userId);
+    int x = 0;
+    int maxNew = MyList.size();
+    request.setAttribute("MyMovieList",MyList);
 %>
-<table>
-    <tr style ="padding-top: 5em; padding-bottom: 5em;  margin-left: 50px;">
-        <td style = "width:50%">
-            <!--img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTA0OTQwMTIxNzheQTJeQWpwZ15BbWU4MDQ1MzI3OTMy._V1_UX182_CR0,0,182,268_AL_.jpg">!--->
-
-
-        </td>
-        <%
-        while(i<max) {
+    <table>
+        <td style ="padding-top: 5em; padding-bottom: 5em;  margin-left: 50px;">
+                <%
+        while(x<maxNew) {
             %>
-        <tr id="<%=i%>Tab" >
-            <td style="border:solid white 3px;">
-        <!-- TODO add in cross ref to the movie posters !-->
 
-        <p><b style = "font-size:30px; color: white;"> <%=  List.get(i).getTitle()%></b></p>
-                <hr style = "width: 40%;">
-        <p><b style = "font-size:20px; color: white;">Plot Preview</b></p>
-        <p style="color: white;"><%=  List.get(i).getDescription()%></p>
-
-
-        <!------------All Reviews Modal-------------------------------->
-    <div style="text-align: center">
-    <label class="btn" for="modal-4.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Reviews</label>
-        <input class="modal-state" id="modal-4.1" type="checkbox" />
-        <div class="modal">
-            <label class="modal__bg" for="modal-4.1"></label>
-            <div class="modal__inner" style="text-align: center">
-                <label class="modal__close" for="modal-4.1"></label>
-                <h2 class="modal-title" style="color:black;">All Reviews</h2>
-                <input readonly type="text" id="output" style=" border: none; width: 100%;">
-            </div>
-        </div>
-    &nbsp;&nbsp;&nbsp;
-        <!-----------------todo ADD LINK TO GENERIC PAGE AND SEND IN SELCTED ID FROM OBJ --------------------------------------->
-        <!------------Write Review Modal TODO ADD LINK------------------------------->
-        <label class="btn" for="modal-4.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
-
-        <input class="modal-state" id="modal-4.2" type="checkbox" />
-        <div class="modal">
-            <label class="modal__bg" for="modal-4.2"></label>
-            <div class="modal__inner" style="text-align: center">
-                <label class="modal__close" for="modal-4.2"></label>
-                <h2 class="modal-title" style="color:black;">Add Review</h2>
-
-                <form action="/moviePage" method="post"style="height:80%;">
-                <textarea name="Text" id="input" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 100%;"></textarea>
-                <button type="button" onclick="copyText();" style="cursor: pointer; font-size: 24px;">Save Review</button>
-                </form>
-                <br/>
-            </div>
-        </div>
-    </div>
-            </td>
-        </tr>
-<tr>
-    <td>
-        <br />
-    </td>
-</tr>
-        <%
-                i++;
-        }
-        %>
-     <!--   <td>
-            <p><b style = "font-size:30px">Geostorm</b></p>
-            <hr align = center width = 47%>
-            <p><b style = "font-size:20px">Release Date: October 20, 2017</b></p>
-            <p><b style = "font-size:20px">Plot Preview</b></p>
-            <p>An experimental weather regulating system called Dutch Boy has been weaponized to take out countries by creating geostorms.</p>
-
-                  <!-------------------------------------------------------->
-
-        <!--/td1 !
-    </tr>
-<tr>
-    <td>
-        <br />
-    </td>
-</tr>
-    <tr style ="padding-top: 5em; padding-bottom: 5em; border: solid white 3px; border-radius: 5em; margin-left: 50px;">
-        <td style = "width: 50%;">
-            <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjQ1MzcxNjg4N15BMl5BanBnXkFtZTgwNzgwMjY4MzI@._V1_UX182_CR0,0,182,268_AL_.jpg">
-        </td>
-        <td>
-            <p><b style = "font-size:30px">Star Wars: The Last Jedi</b></p>
-            <hr align = center; width = 47%>
-            <p><b style = "font-size:20px">Release Date: December 15, 2017</b></p>
-            <p><b style = "font-size:20px">Plot Preview</b></p>
-            <p>Having taken her first steps into a larger world in Star Wars: The Force Awakens (2015), Rey continues her epic journey with Finn, Poe, and Luke Skywalker in the next chapter of the saga.</p>
-
-
-     </tr>
-     <tr>
-         <td>
-             <br />
-         </td>
-     </tr>
-     <tr style = "padding-top: 5em; padding-bottom: 5em; border: solid white 3px; border-radius: 5em; margin-left: 50px;">
-         <td style = "width: 50%;">
-             <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjMyNDkzMzI1OF5BMl5BanBnXkFtZTgwODcxODg5MjI@._V1_UX182_CR0,0,182,268_AL_.jpg">
-         </td>
-         <td>
-             <p><b style = "font-size:30px">Thor: Ragnarok</b></p>
-             <hr align = center width = 47%>
-             <p><b style = "font-size:20px">Release Date: November 3, 2017</b></p>
-             <p><b style = "font-size:20px">Plot Preview</b></p>
-             <p>In Marvel Studios' Thor: Ragnarok, Thor is imprisoned on the other side of the universe without his mighty hammer and finds himself in a race against time to get back to Asgard to stop Ragnarok-the destruction of his homeworld and the end of Asgardian civilization-at the hands of an all-powerful new threat, the ruthless Hela. But first he must survive a deadly gladiatorial contest that pits him against his former ally and fellow Avenger-the Incredible Hulk!</p>
-
-
-          <!-------------------------------------------------------->
-        <!---       </td>
-
-           </tr>
-           <tr>
-               <td>
-                   <br />
-               </td>
-           </tr>
-           <tr style ="padding-top: 5em; padding-bottom: 5em; border: solid white 3px; border-radius: 5em; margin-left: 50px;">
-               <td style ="width:50%;">
-                   <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BNGFmM2NmYjYtMjAwNy00ZDkzLWI3ZWMtOGZhOTRhYzQwMTA0XkEyXkFqcGdeQXVyNzU2MzMyNTI@._V1_UX182_CR0,0,182,268_AL_.jpg">
-               </td>
-               <td>
-                   <p><b style = "font-size:30px">Murder on the Orient Express</b></p>
-                   <hr align = center width = 47%>
-                   <p><b style = "font-size:20px">Release Date: November 10, 2017</b></p>
-                   <p><b style = "font-size:20px">Plot Preview</b></p>
-                   <p>What starts out as a lavish train ride through Europe quickly unfolds into one of the most stylish, suspenseful and thrilling mysteries ever told. From the novel by best selling author Agatha Christie, "Murder on the Orient Express" tells the tale of thirteen strangers stranded on a train, where everyone's a suspect. One man must race against time to solve the puzzle before the murderer strikes again.</p>
-
-
+        <td id="<%=x%>Tab" >
+            <p><b style = "font-size:30px"> <%=MyList.get(x).getTitle()%></b></p>
+            <p><b style = "font-size:20px">Plot Preview:</b></p>
+            <p><%=MyList.get(x).getDescription()%></p>
+            <!------------Button-------------------------------->
+            <label class="btn" for="modal-<%=x%>.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Reviews</label>
+            <input class="modal-state" id="modal-<%=x%>>.1" type="checkbox" />
+            <div class="modal">
+                <label class="modal__bg" for="modal-<%=x%>.1"></label>
+                <div class="modal__inner" style="text-align: center">
+                    <label class="modal__close" for="modal-<%=x%>.1"></label>
+                    <h2 class="modal-title" style="color:black;">All Reviews</h2>
+                    <input type="text" id="output<%=x%>" style="width: 100%;">
                 </div>
             </div>
-            <!-------------------------------------------------------->
-</table>
+            <label class="btn" for="modal-<%=x%>.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
+            <!-- Button!-->
+            <input class="modal-state" id="modal-<%=x%>.2" type="checkbox" />
+            <div class="modal">
+                <label class="modal__bg" for="modal-<%=x%>.2"></label>
+                <div class="modal__inner" style="text-align: center">
+                    <label class="modal__close" for="modal-<%=x%>.2"></label>
+                    <h2 class="modal-title" style="color:black;">Add Review</h2>
+
+                    <form action="/moviePage" method="post">
+                        <textarea name="Text" id="input<%=x%>" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
+                        <button type="button" onclick="copyText();" style="cursor: pointer; font-size: 24px;">Save Review</button>
+                    </form>
+                    <br/>
+                </div>
+            </div>
+        </td>
+        <br/>
+        <%
+                x++;
+            }
+        %>
+    </table>
 </body>
 </html>

@@ -12,7 +12,10 @@ public class watchList {
 
     public ArrayList<movieModel> getMyMovies(int id){ return  db_User.getMyMovies(id);}
 
-    public ArrayList<movieModel> getRecMovies(int id) {return db_User.getRec(id);}
+    public void setMyMovie(int iduser, int idmovie) {
+        db_User.addToMyMovies(idmovie, iduser);
+    }
+
 
 
 

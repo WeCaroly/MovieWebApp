@@ -1,6 +1,8 @@
 package webapp;
 
 import appLayer.User;
+import dataLayer.DBuser;
+import webapp.models.userModel;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,25 +21,25 @@ public class login extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.print("Do post: \nlogin-name:"+ request.getParameter("loginname")+
                 " \nPassword:" + request.getParameter("password"));
-
-
+        //Obtain the session object, create a new session if doesn't exist
+        session = request.getSession();
+        //set a string session attribute
+        session.setAttribute("MySession", user.getId(request.getParameter("loginname"),request.getParameter("password")));
         //dispatch
         request.setAttribute("username", request.getParameter("loginname"));
         request.setAttribute("password", request.getParameter("password"));
 
         if(user.isValidUserCredentials(request.getParameter("loginname"),request.getParameter("password"))) {
-            request.setAttribute("userID", user.getID());
+            DBuser db = new DBuser();
+
+            request.setAttribute("userID", user.getId(request.getParameter("loginname"),request.getParameter("password")));
             request.getRequestDispatcher("/WatchlistPage.jsp").forward(request, response);
         }else{
             request.setAttribute("errorMessage","Invalid Log in information. Try again.");
             request.getRequestDispatcher("/login.jsp").forward(request,response);
         }
 
-        //Obtain the session object, create a new session if doesn't exist
-        session = request.getSession(true);
 
-        //set a string session attribute
-        session.setAttribute("MySessionVariable", "MySessionAtrValue");
 
     }
 
