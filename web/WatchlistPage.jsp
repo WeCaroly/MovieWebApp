@@ -1,6 +1,7 @@
 <%@ page import="appLayer.watchList" %>
 <%@ page import="webapp.models.movieModel" %>
 <%@ page import="java.util.ArrayList" %>
+<link  rel="stylesheet" href="watchlist.css">
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,12 +43,13 @@
     request.setAttribute("MyMovieList",MyList);
 %>
     <table>
-        <td style ="padding-top: 5em; padding-bottom: 5em;  margin-left: 50px;">
+
                 <%
         while(x<maxNew) {
             %>
 
-        <td id="<%=x%>Tab" >
+        <tr id="<%=x%>Tab" >
+        <td style="border:solid white 3px;">
             <p><b style = "font-size:30px"> <%=MyList.get(x).getTitle()%></b></p>
             <p><b style = "font-size:20px">Plot Preview:</b></p>
             <p><%=MyList.get(x).getDescription()%></p>
@@ -79,6 +81,7 @@
                 </div>
             </div>
         </td>
+        </tr>
         <br/>
         <%
                 x++;
