@@ -55,7 +55,7 @@
 <hr>
 <h1 style="text-align: center; font-size: 64px; color: white; font-family: Helvetica;">Search Movies </h1>
 <hr>
-<div class = "search" style=" padding-top: 20px; padding-bottom: 20px; margin-left: 10px; margin-right: 10px;">
+<div class = "search" style=" padding-top: 20px;  margin-left: 10px; margin-right: 10px;">
 <input type="text" name="search" placeholder="Search" style="width: 100%; height: 30px;">
 </div>
 
@@ -70,44 +70,25 @@
     int maxNew = MyList.size();
 %>
 <table>
-    <td style ="padding-top: 5em; padding-bottom: 5em;  margin-left: 50px;">
             <%
         while(x<maxNew) {
             %>
 
-    <td id="<%=x%>Tab" >
+    <tr id="<%=x%>Tab" >
+        <td style="border:solid white 3px;">
         <p><b style = "font-size:30px"> <%=MyList.get(x).getTitle()%></b></p>
+            <hr style="width: 40%">
         <p><b style = "font-size:20px">Plot Preview:</b></p>
         <p><%=MyList.get(x).getDescription()%></p>
-        <!------------Button-------------------------------->
-        <label class="btn" for="modal-<%=x%>.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Reviews</label>
-        <input class="modal-state" id="modal-<%=x%>>.1" type="checkbox" />
-        <div class="modal">
-            <label class="modal__bg" for="modal-<%=x%>.1"></label>
-            <div class="modal__inner" style="text-align: center">
-                <label class="modal__close" for="modal-<%=x%>.1"></label>
-                <h2 class="modal-title" style="color:black;">All Reviews</h2>
-                <input type="text" id="output<%=x%>" style="width: 100%;">
-            </div>
-        </div>
-        <label class="btn" for="modal-<%=x%>.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
-        <!-- Button!-->
-        <input class="modal-state" id="modal-<%=x%>.2" type="checkbox" />
-        <div class="modal">
-            <label class="modal__bg" for="modal-<%=x%>.2"></label>
-            <div class="modal__inner" style="text-align: center">
-                <label class="modal__close" for="modal-<%=x%>.2"></label>
-                <h2 class="modal-title" style="color:black;">Add Review</h2>
-
-                <form action="/moviePage" method="post">
-                    <textarea name="Text" id="input<%=x%>" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
-                    <button type="button" onclick="copyText();" style="cursor: pointer; font-size: 24px;">Save Review</button>
-                </form>
-                <br/>
-            </div>
-        </div>
-    </td>
+            <input type="button" value="Add to Watchlist" style="color:black; background-color:white; font-size: 24px;">
+        </td>
+    </tr>
     <br/>
+    <tr>
+        <td>
+            <br>
+        </td>
+    </tr>
     <%
             x++;
         }
