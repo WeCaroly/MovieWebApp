@@ -62,18 +62,20 @@
             <p><b style = "font-size:20px">Plot Preview:</b></p>
             <p><%=MyList.get(x).getDescription()%></p>
             <!------------Button-------------------------------->
-            <label class="btn" for="modal-<%=x+1%>.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Reviews</label>
-            <input class="modal-state" id="modal-<%=x+1%>>.1" type="checkbox" />
+
+            <label class="btn" for="modal-<%=x+1%>.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">All Reviews</label>
+
+            <input class="modal-state" id="modal-<%=x+1%>.1" type="checkbox" />
             <div class="modal">
                 <label class="modal__bg" for="modal-<%=x+1%>.1"></label>
                 <div class="modal__inner" style="text-align: center">
                     <label class="modal__close" for="modal-<%=x+1%>.1"></label>
                     <h2 class="modal-title" style="color:black;">All Reviews</h2>
-                    <input type="text" id="output<%=x+1%>>" style="width: 100%;">
+                    <input readonly type="text" id="output<%=x+1%>>" style="width: 100%; border:none;">
                 </div>
             </div>
-            <label class="btn" for="modal-<%=x+1%>.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
             <!-- Button!-->
+            <label class="btn" for="modal-<%=x+1%>.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
             <input class="modal-state" id="modal-<%=x+1%>.2" type="checkbox" />
             <div class="modal">
                 <label class="modal__bg" for="modal-<%=x+1%>.2"></label>
@@ -91,6 +93,11 @@
         </td>
         </tr>
         <br/>
+        <tr>
+            <td>
+                <br>
+            </td>
+        </tr>
         <%
                 x++;
             }
