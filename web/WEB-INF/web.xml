@@ -32,4 +32,30 @@
         <url-pattern>/WatchListSubmit</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>moviePage</servlet-name>
+        <servlet-class>webapp.moviePage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>moviePage</servlet-name>
+        <url-pattern>/moviePage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>search</servlet-name>
+        <servlet-class>webapp.search</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>search</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>profile</servlet-name>
+        <servlet-class>webapp.profile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>profile</servlet-name>
+        <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
 </web-app>

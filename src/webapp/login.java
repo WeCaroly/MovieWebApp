@@ -39,9 +39,6 @@ public class login extends HttpServlet {
             request.setAttribute("errorMessage","Invalid Log in information. Try again.");
             request.getRequestDispatcher("/login.jsp").forward(request,response);
         }
-
-
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

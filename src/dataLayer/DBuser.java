@@ -482,6 +482,74 @@ public class DBuser {
 
     }
 
+    /***
+     * Get comments
+     * @param idmovie
+     * */
+    public ArrayList<commentFormatObject> getComment(int idmovie){
+        Connection con = null;
+        Statement stmt = null;
+        String sql;
+
+        ArrayList<userModel> allUsers = getAllUsers();
+        ArrayList<commentFormatObject> allComments = new ArrayList<>();
+        //step 2 register JDBC driver
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try{//step 3 open connection
+            con = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            //step 4
+            stmt = con.createStatement();
+
+            sql = "SELECT * from commentList WHERE idmovie="+ idmovie;
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()){
+                //TODO get all comments
+                movieCommentModel commentModel = new movieCommentModel();
+                commentModel.setComment(rs.getString("comment"));
+                commentModel.setIdmovie(Integer.parseInt(rs.getString("idmovie")));
+                commentModel.setIduser(Integer.parseInt(rs.getString("iduser")));
+
+                commentFormatObject newComment = new commentFormatObject();
+                newComment.setComment(commentModel.getComment());
+                newComment.setIdmovie(commentModel.getIdmovie());
+                newComment.setIduser(commentModel.getIduser());
+
+                //Get all ids and = the id to all users
+                int x = 0;
+                while(allUsers.size() > x) {
+                    if (commentModel.getIduser() == allUsers.get(x).getId()) {
+                       newComment.setUname(allUsers.get(x).getUname());
+                       allComments.add(newComment);
+                       break;
+                    }
+                    x++;
+                }
+            }
+            rs.close();
+            stmt.close();
+            con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            //use to close
+            try{
+                if(stmt!=null){
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return allComments;
+    }
+
     /**
      * Add comments to movies
      * @param comment
@@ -508,8 +576,8 @@ public class DBuser {
             System.out.print("creating statement.... ");
             stmt = con.createStatement();
 
-            sql = "INSERT INTO movieComment (idmovie, iduser, rating, comment) " +
-                    "VALUES (\'"+idmovie+"\', \'"+iduser+"\', \'"+rating+"\', \'"+comment+"\');";
+            sql = "INSERT INTO movieComment (idmovie, iduser, comment) " +
+                    "VALUES (\'"+idmovie+"\', \'"+iduser+"\', \'"+comment+"\');";
             int rs = stmt.executeUpdate(sql);
 
             //rs.close();
