@@ -6,6 +6,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script>
+        var idClicked;
+        function reply_click(clicked_id)
+        {
+            idClicked = clicked_id;
+            console.error(document.getElementById(clicked_id));
+            localStorage.setItem("clickedId",clicked_id);
+        }
+        <% //session.setAttribute("MyMovieList",clicked_id);%>
+    </script>
 </head>
 <body style="background-color: #2E2E2E; margin: 0;">
 
@@ -64,7 +74,7 @@
 
             <label class="btn" for="modal-<%=x%>.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">All Reviews</label>
 
-            <input class="modal-state" id="modal-<%=x%>.1" type="checkbox" />
+            <input class="modal-state" id="modal-<%=x%>.1" type="checkbox" onClick="reply_click(this.id);"/>
             <div class="modal">
                 <label class="modal__bg" for="modal-<%=x%>.1"></label>
                 <div class="modal__inner" style="text-align: center">
@@ -80,7 +90,7 @@
             </div>
             <!-- Button!-->
             <label class="btn" for="modal-<%=x%>.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
-            <input class="modal-state" id="modal-<%=x%>.2" type="checkbox" />
+            <input class="modal-state" id="modal-<%=x%>.2" type="checkbox" onClick="reply_click(this.id);"/>
             <div class="modal">
                 <label class="modal__bg" for="modal-<%=x%>.2"></label>
                 <div class="modal__inner" style="text-align: center">
@@ -96,13 +106,7 @@
                     <br/>
                 </div>
             </div>
-            <script>
-                $(function(){
-                    $('textarea').click(function(){
-                        alert( $(this).attr('id') );
-                    });
-                });
-            </script>
+
         </td>
         </tr>
         <br/>

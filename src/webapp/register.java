@@ -17,6 +17,9 @@ public class register extends HttpServlet{
     User user = new User();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //dispatch
+        //Obtain the session object, create a new session if doesn't exist
+        HttpSession session = request.getSession(true);
+
         request.setAttribute("uname", request.getParameter("uname"));
         request.setAttribute("pass", request.getParameter("pass"));
         request.setAttribute("fname", request.getParameter("fname"));
@@ -47,11 +50,6 @@ public class register extends HttpServlet{
             request.getRequestDispatcher("/registrationPage.jsp").forward(request,response);
         }
 
-        //Obtain the session object, create a new session if doesn't exist
-        HttpSession session = request.getSession(true);
-
-        //set a string session attribute
-        session.setAttribute("MySessionVariable", "MySessionAtrValue");
 
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
