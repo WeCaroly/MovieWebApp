@@ -2,7 +2,15 @@ package webapp.models;
 
 public class movieModel {
     int idmovie;
-    String title, description, rating, comment;
+    String title, description, rating, comment, url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public void setRating(String rating) {
         this.rating = rating;

@@ -233,7 +233,7 @@ public class DBuser {
                 movie.setIdmovie(rs.getInt("idmovie"));
                 movie.setRating(rs.getString("rating"));
                 movie.setTitle(rs.getString("title"));
-
+                movie.setUrl(rs.getString("image"));
                 allMovieList.add(movie);
             }
             rs.close();

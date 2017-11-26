@@ -1,10 +1,14 @@
 <%@ page import="appLayer.watchList" %>
 <%@ page import="webapp.models.movieModel" %>
 <%@ page import="java.util.ArrayList" %>
-<link rel="stylesheet" type="text/css"href="style.css">
 <!DOCTYPE html>
 <html>
 <head>
+    <script>
+        function copyText(){
+                document.getElementById("output").value=document.getElementById("input").value;
+         }
+    </script>
 
 </head>
 <body style="background-color: #2E2E2E; margin: 0;">

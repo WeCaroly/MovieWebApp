@@ -36,7 +36,7 @@
         <br/><br/>
         Last name:&nbsp;<input type="text" name="lname"style="width: 302px; height: 40px; border: solid white;" />
         <br/><br/>
-        Username:&nbsp;<input type="text" name="uname"style="width: 302px; height: 40px; border: solid white;" />
+        Username:&nbsp;<input  type="text" name="uname"style="width: 302px; height: 40px; border: solid white;" />
         <br/><br/>
         &nbsp;Password:&nbsp;<input type="password" name="pass"style="width: 305px; height: 40px; border: solid white;"/>
         <br/><br/>
@@ -50,7 +50,7 @@
         <br/>
         <p>
             <form action="WatchlistPage.jsp" method="get">
-                <input type="submit" value="Submit" style="cursor: pointer; font-size: 24px;"/>
+                <input type="submit" value="Submit" onclick="copyText2();" style="cursor: pointer; font-size: 24px;"/>
             </form>
             <form action="login.jsp" method="get">
                  <input type="submit" value="Cancel" style="cursor: pointer; font-size: 24px;"/>
