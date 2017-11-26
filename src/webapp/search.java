@@ -11,6 +11,7 @@ import java.io.IOException;
 public class search extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Todo Get info from seach and call db
+        request.getRequestDispatcher("/search.jsp").forward(request, response);
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);

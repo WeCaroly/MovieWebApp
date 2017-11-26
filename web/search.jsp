@@ -18,6 +18,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script>
+        function myFunction() {
+            // Declare variables
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         a {
             padding: 10px;
@@ -55,8 +77,8 @@
 <hr>
 <h1 style="text-align: center; font-size: 64px; color: white; font-family: Helvetica;">Search Movies </h1>
 <hr>
-<div class = "search" style=" padding-top: 20px;  margin-left: 10px; margin-right: 10px;">
-<input type="text" name="search" placeholder="Search" style="width: 100%; height: 30px;">
+<div class = "search" style=" padding-top: 20px; padding-bottom: 30px;  margin-left: 10px; margin-right: 10px;">
+<input type="text" name="search" id="myInput" onkeyup="myFunction()"placeholder="Search" style="width: 100%; height: 30px;">
 </div>
 
 <%
@@ -69,7 +91,7 @@
     int x = 0;
     int maxNew = MyList.size();
 %>
-<table>
+<table id="myTable">
             <%
         while(x<maxNew) {
             %>
@@ -80,10 +102,11 @@
             <hr style="width: 40%">
         <p><b style = "font-size:20px">Plot Preview:</b></p>
         <p><%=MyList.get(x).getDescription()%></p>
-            <input type="button" value="Add to Watchlist" style="color:black; background-color:white; font-size: 24px;">
+            <form action="/search" method="post">
+                <input type="button" value="Add to Watchlist" style="color:black; background-color:white; font-size: 24px;">
+            </form>
         </td>
     </tr>
-    <br/>
     <tr>
         <td>
             <br>
@@ -94,7 +117,5 @@
         }
     %>
 </table>
-
-
 </body>
 </html>
