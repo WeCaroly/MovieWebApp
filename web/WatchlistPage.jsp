@@ -2,6 +2,7 @@
 <%@ page import="webapp.models.movieModel" %>
 <%@ page import="java.util.ArrayList" %>
 <link  rel="stylesheet" href="watchlist.css">
+<%@page language="java" session="true" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,13 +35,19 @@
     if(session.getAttribute("MySession") == null){
        response.sendRedirect("login.jsp");
     }
-
+    int x = 0, maxNew = 0;
+    ArrayList<movieModel> MyList= null;
     watchList wl = new watchList();
-    int userId = (Integer) request.getAttribute("userID");
-    ArrayList<movieModel> MyList = wl.getMyMovies(userId);
-    int x = 0;
-    int maxNew = MyList.size();
-    request.setAttribute("MyMovieList",MyList);
+    if(session.getAttribute("MyMovieList") == null) {
+        int userId = (Integer) request.getAttribute("userID");
+        MyList = wl.getMyMovies(userId);
+        out.print(MyList.size() + ",,,,,,,\n");
+        x = 0;
+        maxNew = MyList.size();
+        request.setAttribute("MyMovieList",MyList);
+    }else{
+        MyList =(ArrayList<movieModel>) session.getAttribute("MyMovieList");
+    }
 %>
     <table>
 
@@ -54,27 +61,27 @@
             <p><b style = "font-size:20px">Plot Preview:</b></p>
             <p><%=MyList.get(x).getDescription()%></p>
             <!------------Button-------------------------------->
-            <label class="btn" for="modal-<%=x%>.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Reviews</label>
-            <input class="modal-state" id="modal-<%=x%>>.1" type="checkbox" />
+            <label class="btn" for="modal-<%=x+1%>.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Reviews</label>
+            <input class="modal-state" id="modal-<%=x+1%>>.1" type="checkbox" />
             <div class="modal">
-                <label class="modal__bg" for="modal-<%=x%>.1"></label>
+                <label class="modal__bg" for="modal-<%=x+1%>.1"></label>
                 <div class="modal__inner" style="text-align: center">
-                    <label class="modal__close" for="modal-<%=x%>.1"></label>
+                    <label class="modal__close" for="modal-<%=x+1%>.1"></label>
                     <h2 class="modal-title" style="color:black;">All Reviews</h2>
-                    <input type="text" id="output<%=x%>" style="width: 100%;">
+                    <input type="text" id="output" style="width: 100%;">
                 </div>
             </div>
-            <label class="btn" for="modal-<%=x%>.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
+            <label class="btn" for="modal-<%=x+1%>.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
             <!-- Button!-->
-            <input class="modal-state" id="modal-<%=x%>.2" type="checkbox" />
+            <input class="modal-state" id="modal-<%=x+1%>.2" type="checkbox" />
             <div class="modal">
-                <label class="modal__bg" for="modal-<%=x%>.2"></label>
+                <label class="modal__bg" for="modal-<%=x+1%>.2"></label>
                 <div class="modal__inner" style="text-align: center">
-                    <label class="modal__close" for="modal-<%=x%>.2"></label>
+                    <label class="modal__close" for="modal-<%=x+1%>.2"></label>
                     <h2 class="modal-title" style="color:black;">Add Review</h2>
 
                     <form action="/moviePage" method="post">
-                        <textarea name="Text" id="input<%=x%>" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
+                        <textarea name="Text" id="input" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
                         <button type="button" onclick="copyText();" style="cursor: pointer; font-size: 24px;">Save Review</button>
                     </form>
                     <br/>
