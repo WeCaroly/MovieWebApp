@@ -41,12 +41,15 @@
     if(session.getAttribute("MyMovieList") == null) {
         int userId = (Integer) request.getAttribute("userID");
         MyList = wl.getMyMovies(userId);
-        out.print(MyList.size() + ",,,,,,,\n");
         x = 0;
         maxNew = MyList.size();
-        request.setAttribute("MyMovieList",MyList);
+        session.setAttribute("MyMovieList",MyList);
     }else{
-        MyList =(ArrayList<movieModel>) session.getAttribute("MyMovieList");
+        try {
+            MyList = (ArrayList<movieModel>) session.getAttribute("MyMovieList");
+        }catch (Exception e){
+            System.out.println("Error Code\n\n"+e+"\n\n");
+        }
     }
 %>
     <table>
