@@ -17,7 +17,7 @@ public class search extends HttpServlet {
         HttpSession session = request.getSession(true);
 
         int iduser = (Integer) session.getAttribute("userID");
-        int idmovie = Integer.parseInt(request.getParameter(""));
+        int idmovie = Integer.parseInt(request.getParameter("addBtn"));
 
         db.addToMyMovies(idmovie, iduser);
 

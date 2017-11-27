@@ -1,7 +1,6 @@
 package webapp;
 
 import dataLayer.DBuser;
-import webapp.models.movieCommentModel;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,11 +17,11 @@ public class remove extends HttpServlet {
         HttpSession session = request.getSession(true);
 
         int iduser = (Integer) session.getAttribute("userID");
-        int idmovie = Integer.parseInt(request.getParameter(""));
+        int idmovie = Integer.parseInt(request.getParameter("removebtn"));
 
         db.removeFromMyList(idmovie, iduser);
 
-        request.getRequestDispatcher("/WatchList.jsp").forward(request, response);
+        request.getRequestDispatcher("/WatchlistPage.jsp").forward(request, response);
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);

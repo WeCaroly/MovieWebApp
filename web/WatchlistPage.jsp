@@ -3,6 +3,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="dataLayer.DBuser" %>
 <%@ page import="webapp.models.commentFormatObject" %>
+
 <link  rel="stylesheet" href="watchlist.css">
 <%@page language="java" session="true" %>
 <!DOCTYPE html>
@@ -51,11 +52,9 @@
     }
 %>
     <table>
-
                 <%
         while(x<maxNew) {
             %>
-
         <tr id="<%=x%>Tab" >
         <td style="border:solid white 3px;">
             <p style="padding-top:20px;"><b style = "font-size:30px;"> <%=MyList.get(x).getTitle()%></b></p>
@@ -99,6 +98,7 @@
                 <div class="modal__inner" style="text-align: center">
                     <label class="modal__close" for="modal-<%=x%>.2"></label>
                     <h2 class="modal-title" style="color:black;">Add Review</h2>
+
                         <form action="/moviePage" method="post" style="font-size: 24px; color: white; padding-top: 20px;">
                         <textarea name="input" id="input" maxlength="550" cols="40" rows="5" placeholder="Write Review" style="width:100%; height: 70%;"></textarea>
                             <input type="submit" value="Save Review" style="cursor: pointer; font-size: 24px;"/>
@@ -108,9 +108,13 @@
                     <br/>
                 </div>
             </div>
+
             <!-- REMOVE Button!-->
-            <form action="/remove" method="post">
-            <label class="btn" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Remove from Watchlist</label>
+            <form action="/remove" method="post" style="font-size: 24px; color: white; padding-top: 20px;">
+                <div style="text-align:center;">
+                    <input name="removebtn" value="<%=MyList.get(x).getIdmovie()%>" style="height: 0; width:0; visibility: hidden"/>
+                    <input class="btn" type="submit" value="Remove from Watchlist"  style="padding-top: 10px; cursor: pointer; font-size: 24px;"/>
+                </div>
             </form>
         </td>
         </tr>

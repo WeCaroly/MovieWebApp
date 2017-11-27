@@ -670,7 +670,7 @@ public class DBuser {
             //step 4
             stmt = con.createStatement();
 
-            sql = "SELECT * from movieList WHERE idmovie="+ idmovie +" and iduser =" + iduser;
+            sql = "DELETE * from movieList WHERE idmovie="+ idmovie +" and iduser =" + iduser;
             int rs = stmt.executeUpdate(sql);
 
             stmt.close();

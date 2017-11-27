@@ -103,7 +103,10 @@
         <p><b style = "font-size:20px">Plot Preview:</b></p>
         <p><%=MyList.get(x).getDescription()%></p>
             <form action="/search" method="post">
-                <input type="button" value="Add to Watchlist" style="color:black; background-color:white; font-size: 24px;">
+                <div style="text-align:center;">
+                    <input name="addBtn" value="<%=MyList.get(x).getIdmovie()%>" style="height: 0; width:0; visibility: hidden"/>
+                    <input class="button" type="submit" value="Add to Watchlist" style="color:black; background-color:white; font-size: 24px;"/>
+                </div>
             </form>
         </td>
     </tr>

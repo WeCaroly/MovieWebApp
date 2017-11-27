@@ -17,10 +17,6 @@ public class login extends HttpServlet {
     User user = new User();
     HttpSession session;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //from form
-        PrintWriter out = response.getWriter();
-        out.print("Do post: \nlogin-name:"+ request.getParameter("loginname")+
-                " \nPassword:" + request.getParameter("password"));
         //Obtain the session object, create a new session if doesn't exist
         session = request.getSession();
         //set a string session attribute
