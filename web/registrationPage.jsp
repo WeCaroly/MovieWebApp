@@ -32,17 +32,17 @@
     <form action="/register" method="post" style="font-size: 24px; font-family: Helvetica; color: white; padding-top: 20px;">
 
     <div class="information" style="text-align: center; font-family: Helvetica;">
-        First name:&nbsp;<input type="text" name="fname" style="width: 300px; height: 40px; border: solid white;" />
+        First name:&nbsp;<input type="text" name="fname" required style="width: 300px; height: 40px; border: solid white;" />
         <br/><br/>
-        Last name:&nbsp;<input type="text" name="lname"style="width: 302px; height: 40px; border: solid white;" />
+        Last name:&nbsp;<input type="text" name="lname" required style="width: 302px; height: 40px; border: solid white;" />
         <br/><br/>
-        Username:&nbsp;<input  type="text" name="uname"style="width: 302px; height: 40px; border: solid white;" />
+        Username:&nbsp;<input  type="text" name="uname" required style="width: 302px; height: 40px; border: solid white;" />
         <br/><br/>
-        &nbsp;Password:&nbsp;<input type="password" name="pass"style="width: 305px; height: 40px; border: solid white;"/>
+        &nbsp;Password:&nbsp;<input type="password" name="pass" required style="width: 305px; height: 40px; border: solid white;"/>
         <br/><br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Age:&nbsp;<input type="number" name="age" min="1" max="105" style="width: 300px; height: 40px; border: solid white;"/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Age:&nbsp;<input type="number" name="age" required min="1" max="105" style="width: 300px; height: 40px; border: solid white;"/>
         <br/><br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email:&nbsp;<input type="text" name="ename" style="width: 300px; height: 40px; border: solid white;"/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email:&nbsp;<input type="text" name="ename" required style="width: 300px; height: 40px; border: solid white;"/>
         <br/><br/>
         <h4>Would you like to get email?</h4>
         <input type="checkbox" name="reciveEmail" style="width: 30px; height: 20px; border: solid white;" /> Yes

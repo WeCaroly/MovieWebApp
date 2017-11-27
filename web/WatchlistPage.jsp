@@ -91,7 +91,7 @@
 
 
             <!-- Button!-->
-            <label class="btn" for="modal-<%=x%>.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;" >Add Review</label>
+            <label class="btn" for="modal-<%=x%>.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Add Review</label>
             <input class="modal-state" id="modal-<%=x%>.2" type="checkbox"/>
             <div class="modal">
                 <label class="modal__bg" for="modal-<%=x%>.2"></label>
