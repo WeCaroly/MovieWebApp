@@ -107,7 +107,7 @@
                     <input name="addBtn" value="<%=MyList.get(x).getIdmovie()%>" style="height: 0; width:0; visibility: hidden"/>
                     <input class="button" type="submit" value="Add to Watchlist" style="color:black; background-color:white; font-size: 24px;"/>
                 </div>
-            </form>
+                </form>
         </td>
     </tr>
 

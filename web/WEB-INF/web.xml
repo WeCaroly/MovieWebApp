@@ -51,15 +51,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>profile</servlet-name>
-        <servlet-class>webapp.profile</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>profile</servlet-name>
-        <url-pattern>/profile</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>remove</servlet-name>
         <servlet-class>webapp.remove</servlet-class>
     </servlet>

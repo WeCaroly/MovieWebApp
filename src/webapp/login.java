@@ -29,7 +29,7 @@ public class login extends HttpServlet {
             DBuser db = new DBuser();
 
             session.setAttribute("userID", user.getId(request.getParameter("loginname"),request.getParameter("password")));
-            request.setAttribute("userID", user.getId(request.getParameter("loginname"),request.getParameter("password")));
+            request.setAttribute("userID", session.getAttribute("userID"));
             request.getRequestDispatcher("/WatchlistPage.jsp").forward(request, response);
         }else{
             request.setAttribute("errorMessage","Invalid Log in information. Try again.");
