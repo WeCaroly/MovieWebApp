@@ -51,6 +51,7 @@
     </servlet-mapping>
 
     <servlet>
+
         <servlet-name>profile</servlet-name>
         <servlet-class>webapp.profile</servlet-class>
     </servlet>

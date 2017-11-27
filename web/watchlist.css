@@ -6,7 +6,7 @@
 }
 .modal {
     opacity: 0;
-    visibility: hidden;
+    visibility: visible;
     position: fixed;
     top: 0;
     right: 0;
