@@ -78,8 +78,8 @@
                         ArrayList<commentFormatObject> ListComments =  db.getComment(idmovie);;
                         while(ListComments.size()>i){
                             %>
-                    <p class="commentUser" style="color: black;"> <%= ListComments.get(i).getUname()%> </p>
-                    <p class="comment" style="color: black;"> <%= ListComments.get(i).getComment()%></p>
+                    <p class="commentUser" style=" text-align: left; font-size: 24px; color: black;"> Username: <%= ListComments.get(i).getUname()%> </p>
+                    <p class="comment" style="text-align: left; color: black;"> Comments: <%= ListComments.get(i).getComment()%></p>
                     <br/><br/>
                             <%
                             i++;
