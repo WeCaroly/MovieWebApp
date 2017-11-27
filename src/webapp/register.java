@@ -42,7 +42,7 @@ public class register extends HttpServlet{
         if(user.validEmail(newUser.getEname())){
             //call to user that is connected to DB
             user.register(newUser);
-            newUser.setId(user.getAllUser().size()+1);
+            newUser.setId(user.getAllUser().size());
             request.setAttribute("userID", newUser.getId());
             session.setAttribute("userID", newUser.getId());
             request.getRequestDispatcher("/WatchlistPage.jsp").forward(request, response);
