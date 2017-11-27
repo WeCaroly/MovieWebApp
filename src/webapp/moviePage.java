@@ -6,6 +6,7 @@ import webapp.models.movieModel;
 import webapp.models.userModel;
 
 import javax.jws.WebService;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,8 @@ import java.util.ArrayList;
 
 @WebService(name = "moviePage")
 public class moviePage extends HttpServlet {
-    HttpSession session;
+
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Obtain the session object, create a new session if doesn't exist
         HttpSession session = request.getSession(true);
@@ -25,24 +27,24 @@ public class moviePage extends HttpServlet {
         // request.setAttribute("input", request.getParameter("input"));
         // request.setAttribute("output", request.getParameter("output"));
 
-        ArrayList<movieModel> myList = (ArrayList<movieModel>) session.getAttribute("MyMovieList"); //all movies from user list
-
-        //Todo position id??????
-        int positionId = 0;//get the while list position of the movie list
+        int id = (Integer) session.getAttribute("userID");
 
         movieCommentModel movie = new movieCommentModel();
-        movie.setIduser( (Integer) session.getAttribute("userID"));
+        movie.setIduser( id );
         //TODO get the right numbers
-        movie.setIdmovie(myList.get(positionId).getIdmovie());
-        movie.setComment(request.getParameter("input"+positionId));
+        movie.setComment(request.getParameter("input"));
+        movie.setIdmovie(Integer.parseInt(request.getParameter("addReview")));
+
 
         db.addComment(movie.getComment(),movie.getIdmovie(),movie.getIduser(),movie.getRating());
 
         request.getRequestDispatcher("/WatchlistPage.jsp").forward(request, response);
 
         }
-        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //todo get new
+        //allReview -> id
+        //
+    }
 }
 
