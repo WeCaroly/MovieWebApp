@@ -1,6 +1,7 @@
 package webapp;
 
 import dataLayer.DBuser;
+import webapp.models.commentFormatObject;
 import webapp.models.movieCommentModel;
 import webapp.models.movieModel;
 import webapp.models.userModel;
@@ -17,21 +18,16 @@ import java.util.ArrayList;
 
 @WebService(name = "moviePage")
 public class moviePage extends HttpServlet {
-
+    DBuser db = new DBuser();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Obtain the session object, create a new session if doesn't exist
         HttpSession session = request.getSession(true);
-        DBuser db = new DBuser();
-
-        // request.setAttribute("input", request.getParameter("input"));
-        // request.setAttribute("output", request.getParameter("output"));
 
         int id = (Integer) session.getAttribute("userID");
 
         movieCommentModel movie = new movieCommentModel();
         movie.setIduser( id );
-        //TODO get the right numbers
         movie.setComment(request.getParameter("input"));
         movie.setIdmovie(Integer.parseInt(request.getParameter("addReview")));
 
@@ -42,9 +38,7 @@ public class moviePage extends HttpServlet {
 
         }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //todo get new
-        //allReview -> id
-        //
+      
     }
 }
 

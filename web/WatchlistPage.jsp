@@ -1,6 +1,8 @@
 <%@ page import="appLayer.watchList" %>
 <%@ page import="webapp.models.movieModel" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="dataLayer.DBuser" %>
+<%@ page import="webapp.models.commentFormatObject" %>
 <link  rel="stylesheet" href="watchlist.css">
 <%@page language="java" session="true" %>
 <!DOCTYPE html>
@@ -61,18 +63,34 @@
             <p><b style = "font-size:20px">Plot Preview:</b></p>
             <p><%=MyList.get(x).getDescription()%></p>
             <!------------Button-------------------------------->
-            <label class="btn" for="modal-<%=x%>.1" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;" id="allReview" value="<%=MyList.get(x).getIdmovie()%>">All Reviews</label>
+            <label class="btn" for="modal-<%=x%>.1" type="button"
+                   style="padding-top: 10px; cursor: pointer; font-size: 24px;">All Reviews</label>
             <input class="modal-state" id="modal-<%=x%>.1" type="checkbox"/>
-            <form action="/moviePage" method="get">
             <div class="modal">
                 <label class="modal__bg" for="modal-<%=x%>.1"></label>
                 <div class="modal__inner" style="text-align: center">
                     <label class="modal__close" for="modal-<%=x%>.1"></label>
                     <h2 class="modal-title" style="color:black;">All Reviews</h2>
-                    <input readonly type="text" id="output" style="width: 100%; border:none;">
+                    <%
+                        int idmovie = MyList.get(x).getIdmovie();
+                        int i=0;
+                        DBuser db = new DBuser();
+
+                        ArrayList<commentFormatObject> ListComments =  db.getComment(idmovie);;
+                        while(ListComments.size()>i){
+                            %>
+                    <p class="commentUser" style="color: black;"> <%= ListComments.get(i).getUname()%> </p>
+                    <p class="comment" style="color: black;"> <%= ListComments.get(i).getComment()%></p>
+                    <br/><br/>
+                            <%
+                            i++;
+                        }
+                    %>
+                    <p></p>
                 </div>
             </div>
-            </form>
+
+
             <!-- Button!-->
             <label class="btn" for="modal-<%=x%>.2" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;" >Add Review</label>
             <input class="modal-state" id="modal-<%=x%>.2" type="checkbox"/>
@@ -90,8 +108,10 @@
                     <br/>
                 </div>
             </div>
+            <!-- REMOVE Button!-->
+            <form action="/remove" method="post">
             <label class="btn" type="button" style="padding-top: 10px; cursor: pointer; font-size: 24px;">Remove from Watchlist</label>
-
+            </form>
         </td>
         </tr>
         <br/>

@@ -505,31 +505,25 @@ public class DBuser {
             //step 4
             stmt = con.createStatement();
 
-            sql = "SELECT * from commentList WHERE idmovie="+ idmovie;
+            sql = "SELECT * from movieComment WHERE idmovie="+ idmovie;
             ResultSet rs = stmt.executeQuery(sql);
 
+
             while (rs.next()){
-                //TODO get all comments
-                movieCommentModel commentModel = new movieCommentModel();
+                int x =0;
+                commentFormatObject commentModel = new commentFormatObject();
                 commentModel.setComment(rs.getString("comment"));
                 commentModel.setIdmovie(Integer.parseInt(rs.getString("idmovie")));
                 commentModel.setIduser(Integer.parseInt(rs.getString("iduser")));
-
-                commentFormatObject newComment = new commentFormatObject();
-                newComment.setComment(commentModel.getComment());
-                newComment.setIdmovie(commentModel.getIdmovie());
-                newComment.setIduser(commentModel.getIduser());
-
-                //Get all ids and = the id to all users
-                int x = 0;
-                while(allUsers.size() > x) {
-                    if (commentModel.getIduser() == allUsers.get(x).getId()) {
-                       newComment.setUname(allUsers.get(x).getUname());
-                       allComments.add(newComment);
-                       break;
+                while (allUsers.size()>x ){
+                    if(allUsers.get(x).getId() == commentModel.getIduser()){
+                        commentModel.setUname(allUsers.get(x).getUname());
+                        allComments.add(commentModel);
+                        break;
                     }
                     x++;
                 }
+
             }
             rs.close();
             stmt.close();
@@ -657,4 +651,42 @@ public class DBuser {
         return userInfo;
     }
 
+    public void removeFromMyList(int idmovie, int iduser){
+        Connection con = null;
+        Statement stmt = null;
+        String sql;
+
+        ArrayList<userModel> allUsers = getAllUsers();
+        ArrayList<commentFormatObject> allComments = new ArrayList<>();
+        //step 2 register JDBC driver
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try{//step 3 open connection
+            con = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            //step 4
+            stmt = con.createStatement();
+
+            sql = "SELECT * from movieList WHERE idmovie="+ idmovie +" and iduser =" + iduser;
+            int rs = stmt.executeUpdate(sql);
+
+            stmt.close();
+            con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            //use to close
+            try{
+                if(stmt!=null){
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
