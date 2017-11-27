@@ -52,6 +52,10 @@
     <h1 style="text-align: center; font-size: 64px; color: white; font-family: Helvetica;">Profile Information</h1>
     <hr>
     <%
+        if(session.getAttribute("userID") == null){
+            response.sendRedirect("login.jsp");
+        }
+
         int iduser = (Integer) session.getAttribute("userID");
 
         DBuser db = new DBuser();

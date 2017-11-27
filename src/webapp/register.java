@@ -44,6 +44,7 @@ public class register extends HttpServlet{
             user.register(newUser);
             newUser.setId(user.getAllUser().size()+1);
             request.setAttribute("userID", newUser.getId());
+            session.setAttribute("userID", newUser.getId());
             request.getRequestDispatcher("/WatchlistPage.jsp").forward(request, response);
         }else{
             request.setAttribute("errorMessage","Invalid information. Try again.");

@@ -15,7 +15,6 @@ public class search extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DBuser db = new DBuser();
         HttpSession session = request.getSession(true);
-
         int iduser = (Integer) session.getAttribute("userID");
         int idmovie = Integer.parseInt(request.getParameter("addBtn"));
 

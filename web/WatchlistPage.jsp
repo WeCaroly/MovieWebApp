@@ -29,8 +29,10 @@
     then click "Add Movie to Watchlist".
     </p>
 <%
-    if(session.getAttribute("MySession") == null){
-       response.sendRedirect("login.jsp");
+    if(session.getAttribute("userID") == null){
+        session.setAttribute("userID",request.getParameter("userID"));
+        if(session.getAttribute("userID") == null)
+            response.sendRedirect("login.jsp");
     }
     int x = 0, maxNew = 0;
     ArrayList<movieModel> MyList= null;
@@ -47,7 +49,8 @@
             maxNew = MyList.size();
             session.setAttribute("MyMovieList",MyList);
         }catch (Exception e){
-            System.out.println("Error Code\n\n"+e+"\n\n");
+            System.out.println("Error Code:" +
+                    "\n\n"+e+"\n\n");
         }
     }
 %>
