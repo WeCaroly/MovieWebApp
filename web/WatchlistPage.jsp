@@ -4,6 +4,7 @@
 <%@ page import="dataLayer.DBuser" %>
 <%@ page import="webapp.models.commentFormatObject" %>
 
+
 <link  rel="stylesheet" href="watchlist.css">
 <%@page language="java" session="true" %>
 <!DOCTYPE html>
@@ -11,7 +12,7 @@
 <head>
 </head>
 <body style="background-color: #2E2E2E; margin: 0;">
-
+<p></p>
 <div class = "Menu" style="display: block; background-color: black; padding-top: 20px; padding-bottom: 20px;">
     <h1 style = "float: right; color: white; margin: 0;">Fifth Brick Inc.</h1>
     <a href="WatchlistPage.jsp" style="font-weight: bold;">My Watchlist   |</a>
@@ -104,11 +105,11 @@
                         <input type="submit" value="Save Review" style="cursor: pointer; font-size: 24px;"/>
                         <input name="addReview" value="<%=MyList.get(x).getIdmovie()%>" style="height: 0; width:0; visibility: hidden"/>
 
-                    </form>
+
                     <br/>
                 </div>
             </div>
-
+            </form>
             <!-- REMOVE Button!-->
             <form action="/remove" method="post" style="font-size: 24px; color: white; padding-top: 20px;">
                 <div style="text-align:center;">
